@@ -547,6 +547,45 @@ select{
 }
 .done-banner svg{width:16px;height:16px;flex:0 0 auto}
 
+/* ── 재능의 공방 · 길드장 ───────────────── */
+.gh-sub{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:20px 0 10px}
+.gh-sub h2{font-size:16.5px;letter-spacing:-.01em}
+.gh-steps{list-style:none;margin:0;padding:0}
+.gh-step{position:relative;display:flex;gap:11px;padding-bottom:14px}
+.gh-step:last-child{padding-bottom:0}
+.gh-step::after{content:"";position:absolute;left:14px;top:32px;bottom:2px;width:2px;border-radius:2px;background:#E7E1D5}
+.gh-step:last-child::after{display:none}
+.gh-step i{width:29px;height:29px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;background:var(--amber-soft);color:var(--amber);font-style:normal;font-size:13.5px;font-weight:800}
+.gh-step b{display:block;font-size:15px;font-weight:800;letter-spacing:-.01em;line-height:1.4}
+.gh-step em{display:block;font-style:normal;font-size:12.5px;font-weight:600;color:var(--muted);line-height:1.5;margin-top:2px}
+.gh-list{display:flex;flex-direction:column;gap:11px}
+.gh-card{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:14px 15px}
+.gh-card.full{border-color:#EBD3AC;background:linear-gradient(180deg,#FFFCF5,#fff)}
+.gh-card.mine{border-color:#B4D2C1;background:var(--green-soft)}
+.gh-top{display:flex;align-items:center;gap:10px}
+.gh-ava{width:42px;height:42px;border-radius:50%;flex:0 0 auto;display:grid;place-items:center;font-size:15px;font-weight:800;color:#4A5A52}
+.gh-who{flex:1;min-width:0}
+.gh-who b{display:block;font-size:14.5px;font-weight:800;letter-spacing:-.01em}
+.gh-who span{display:block;font-size:11.5px;font-weight:700;color:var(--muted);margin-top:1px}
+.gh-badge{flex:0 0 auto;padding:4px 8px;border-radius:8px;font-size:11px;font-weight:800;color:var(--blue);background:var(--blue-soft)}
+.gh-badge.open{color:#8A5A1C;background:#F6E3C4}
+.gh-title{font-size:15.5px;font-weight:800;letter-spacing:-.01em;line-height:1.4;margin:10px 0 4px}
+.gh-line{font-size:13px;font-weight:600;color:var(--ink-soft);line-height:1.5;margin:0 0 11px}
+.gh-bar{height:7px;border-radius:999px;background:#F1EDE4;overflow:hidden;margin-bottom:9px}
+.gh-bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#7DB295,#2E5E4E);transition:width .45s ease}
+.gh-card.full .gh-bar i{background:linear-gradient(90deg,#E0A85F,#C08036)}
+.gh-foot{display:flex;align-items:center;justify-content:space-between;gap:9px}
+.gh-count{font-size:13px;font-weight:800;color:var(--ink-soft)}
+.gh-card.full .gh-count{color:#8A5A1C}
+.gh-vote{min-height:44px;padding:0 15px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font-size:14px;font-weight:800;color:var(--ink-soft)}
+.gh-vote[aria-pressed="true"]{background:var(--terra-soft);border-color:#EFC9B9;color:var(--terra)}
+.gh-open{margin:10px 0 0;padding:9px 12px;border-radius:12px;background:var(--amber-soft);color:#8A5A1C;font-size:12.5px;font-weight:800;line-height:1.5}
+.gh-note{margin:10px 2px 4px;font-size:12.5px;font-weight:700;color:var(--muted);line-height:1.55}
+.gh-apply{margin-top:10px;padding:14px 14px 4px;border-radius:18px;background:#fff;border:1.5px solid var(--line)}
+.gh-apply .field{margin-bottom:12px}
+#guildApplyToggle{margin-top:14px}
+#guildApplyDone{margin:12px 0 0}
+
 /* toast + fx */
 .toast{
   position:absolute;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));
@@ -1337,6 +1376,49 @@ select{
           <button class="chip" type="button">손주와 노는 10분</button>
         </div>
         <p class="hint" style="display:block;white-space:normal;margin:10px 0 8px">이 한 줄은 나중에 ‘인생 경험 카드’가 됩니다.</p>
+
+        <div class="gh-sub">
+          <h2>내 경험이 수업·수입이 되는 3단계</h2>
+        </div>
+        <ol class="gh-steps" aria-label="길드장이 되는 3단계">
+          <li class="gh-step">
+            <i aria-hidden="true">1</i>
+            <div><b>내 경험 카드 올리기</b><em>“남에게 10분 가르칠 수 있는 것” 한 줄이면 시작돼요.</em></div>
+          </li>
+          <li class="gh-step">
+            <i aria-hidden="true">2</i>
+            <div><b>‘궁금해요’ 5명이 모이면 10분 맛보기</b><em>팔리지 않을 강좌를 미리 만들지 않아요. 반응부터 확인해요.</em></div>
+          </li>
+          <li class="gh-step">
+            <i aria-hidden="true">3</i>
+            <div><b>유료 원데이·심화반 (수강료 50~60% 정산)</b><em>잘 되면 부설 평생교육원·지자체 파견 강사로 이어져요.</em></div>
+          </li>
+        </ol>
+
+        <div class="gh-sub" style="margin-top:18px">
+          <h2>오늘의 길드장 · 재능 맛보기</h2>
+          <span class="hint">5명이면 개설</span>
+        </div>
+        <div class="gh-list" id="guildList"></div>
+        <p class="gh-note">‘배우고 싶어요’는 말 대신 누르는 신청이에요. 5명이 차면 그분의 원데이 클래스가 열리고, 수강료는 강사 몫 50~60%로 정산돼요.</p>
+
+        <button class="btn btn-ghost btn-sm" type="button" id="guildApplyToggle" aria-expanded="false" aria-controls="guildApplyBox">나도 길드장 신청해 보기 (체험)</button>
+        <div class="done-banner" id="guildApplyDone" hidden>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="#2E5E4E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          후보 등록 완료! 공방 목록에 내 재능 카드가 올라갔어요
+        </div>
+        <div class="gh-apply" id="guildApplyBox" hidden>
+          <div class="field">
+            <label for="guildFieldInput">분야</label>
+            <input type="text" id="guildFieldInput" maxlength="20" placeholder="예) 스마트폰 사진, 정리수납, 가계부">
+          </div>
+          <div class="field">
+            <label for="guildIntroInput">한 줄 소개</label>
+            <textarea id="guildIntroInput" rows="2" maxlength="80" placeholder="예) 30년 찍은 사진으로 자서전 한 권 만드는 법, 10분이면 보여 드려요."></textarea>
+          </div>
+          <button class="btn btn-primary btn-sm" type="button" id="guildApplySave" disabled>분야와 한 줄 소개를 적어 주세요</button>
+          <p class="gh-note" style="margin:8px 2px 10px">체험용이에요. 적은 내용은 이 브라우저에만 저장되고, 실제 심사는 없어요.</p>
+        </div>
       </div>
       <div class="sheet-foot">
         <button class="btn btn-primary" type="button" id="atelierComplete" disabled>한 줄 적으면 완료할 수 있어요</button>
@@ -1530,6 +1612,11 @@ select{
       drawn: [],
       answers: { a1: '', a2: '', a3: '' },
       craft: '',
+      guild: {
+        votes: { dohyun: false, miyeong: false },
+        rewarded: { dohyun: false, miyeong: false },
+        apply: { field: '', intro: '', saved: false }
+      },
       cheer: 0,
       crewCheers: 12,
       liked: {},
@@ -2618,6 +2705,98 @@ select{
     }
   }
 
+  /* ── 섬 4 · 재능의 공방 · 길드장 ────── */
+  var GUILDS = [
+    {
+      id: 'dohyun', name: '김도현 길드장', meta: '은퇴 3년 · 사진 30년', tone: '#F2E0CE',
+      title: '스마트폰 사진으로 자서전 만들기',
+      line: '사진 12장을 골라 한 권으로 엮는 법. 10분 맛보기로 먼저 보여 드려요.',
+      base: 4, goal: 5
+    },
+    {
+      id: 'miyeong', name: '한미영 길드장', meta: '은퇴 5년 · 살림 35년', tone: '#DCE8DE',
+      title: '평생 쓸 수 있는 1인 가계부·노후 정리',
+      line: '봉투 세 칸(집·약·밥)으로 월 생활비를 정리하는 10분.',
+      base: 4, goal: 5
+    }
+  ];
+  var guildFormOpen = false;
+  function guildVoted(g){ return !!(state.guild && state.guild.votes && state.guild.votes[g.id]); }
+  function guildNow(g){ return g.base + (guildVoted(g) ? 1 : 0); }
+  function guildApply(){
+    if (!state.guild) { state.guild = { votes: {}, rewarded: {}, apply: {} }; }
+    if (!state.guild.apply) { state.guild.apply = { field: '', intro: '', saved: false }; }
+    return state.guild.apply;
+  }
+  function paintGuildApplyBtn(){
+    var ap = guildApply();
+    var b = $('guildApplySave');
+    if (!b) { return; }
+    var ok = (ap.field || '').trim() && (ap.intro || '').trim();
+    b.disabled = !ok;
+    b.textContent = ok ? (ap.saved ? '후보 카드 고치기' : '후보 카드 올리기') : '분야와 한 줄 소개를 적어 주세요';
+  }
+  function paintGuildApply(){
+    var ap = guildApply();
+    var box = $('guildApplyBox');
+    if (!box) { return; }
+    $('guildFieldInput').value = ap.field || '';
+    $('guildIntroInput').value = ap.intro || '';
+    box.hidden = !guildFormOpen;
+    $('guildApplyDone').hidden = !ap.saved || guildFormOpen;
+    var tg = $('guildApplyToggle');
+    if (tg) {
+      tg.setAttribute('aria-expanded', guildFormOpen ? 'true' : 'false');
+      tg.textContent = guildFormOpen ? '신청 칸 접기' : (ap.saved ? '내 후보 카드 고치기' : '나도 길드장 신청해 보기 (체험)');
+    }
+    paintGuildApplyBtn();
+  }
+  function paintGuild(){
+    var list = $('guildList');
+    if (!list) { return; }
+    var ap = guildApply();
+    var html = '';
+    if (ap.saved) {
+      html += '<article class="gh-card mine">' +
+        '<div class="gh-top">' +
+        '<span class="gh-ava" style="background:#CFE3D6;color:#254B3F">나</span>' +
+        '<div class="gh-who"><b>' + esc(displayName()) + ' 길드장 후보</b><span>' + esc(ap.field || '분야 미정') + ' · 후보 등록</span></div>' +
+        '<span class="gh-badge">검토 중</span>' +
+        '</div>' +
+        '<h3 class="gh-title">' + esc(ap.intro) + '</h3>' +
+        '<p class="gh-line">길잡이가 확인하면 10분 맛보기 날짜가 잡혀요. 그때부터 ‘궁금해요’가 모입니다.</p>' +
+        '<div class="gh-bar"><i style="width:0%"></i></div>' +
+        '<div class="gh-foot"><span class="gh-count" data-guild-count="mine">궁금해요 0/5명</span><span class="gh-vote" style="opacity:.5">개설 준비 중</span></div>' +
+        '</article>';
+    }
+    for (var i = 0; i < GUILDS.length; i++) {
+      var g = GUILDS[i];
+      var now = guildNow(g);
+      var voted = guildVoted(g);
+      var full = now >= g.goal;
+      var pct = Math.round(now / g.goal * 100);
+      if (pct > 100) { pct = 100; }
+      html += '<article class="gh-card' + (full ? ' full' : '') + '">' +
+        '<div class="gh-top">' +
+        '<span class="gh-ava" style="background:' + g.tone + '">' + esc(g.name.charAt(0)) + '</span>' +
+        '<div class="gh-who"><b>' + esc(g.name) + '</b><span>' + esc(g.meta) + '</span></div>' +
+        (full ? '<span class="gh-badge open">개설 조건 달성</span>' : '<span class="gh-badge">맛보기 후보</span>') +
+        '</div>' +
+        '<h3 class="gh-title">' + esc(g.title) + '</h3>' +
+        '<p class="gh-line">' + esc(g.line) + '</p>' +
+        '<div class="gh-bar"><i style="width:' + pct + '%"></i></div>' +
+        '<div class="gh-foot">' +
+        '<span class="gh-count" data-guild-count="' + g.id + '">' + (full ? now + '/' + g.goal + '명 · 🎉 개설 조건 달성!' : now + '/' + g.goal + '명') + '</span>' +
+        '<button class="gh-vote" type="button" data-guild="' + g.id + '" aria-pressed="' + (voted ? 'true' : 'false') + '">' +
+        (voted ? '신청했어요' : '배우고 싶어요') + '</button>' +
+        '</div>' +
+        (full ? '<p class="gh-open">🎉 다음 모닥불에서 ' + esc(g.name) + '의 10분 맛보기가 열립니다. 수강료는 강사 몫 50~60%로 정산돼요.</p>' : '') +
+        '</article>';
+    }
+    list.innerHTML = html;
+    paintGuildApply();
+  }
+
   /* ── 카드 폼 ────────────────────────── */
   var formVis = '원정대';
   function paintSeg(){
@@ -2896,6 +3075,61 @@ select{
       completeIsland('atelier', ev);
     });
 
+    /* 재능의 공방 · 길드장 */
+    $('guildApplyToggle').addEventListener('click', function(){
+      guildFormOpen = !guildFormOpen;
+      paintGuildApply();
+      if (guildFormOpen) {
+        window.setTimeout(function(){
+          var el = guildApply().field ? $('guildIntroInput') : $('guildFieldInput');
+          if (el && el.focus) { el.focus(); }
+        }, 260);
+      }
+    });
+    $('guildFieldInput').addEventListener('input', function(){
+      guildApply().field = this.value;
+      save();
+      paintGuildApplyBtn();
+    });
+    $('guildIntroInput').addEventListener('input', function(){
+      guildApply().intro = this.value;
+      save();
+      paintGuildApplyBtn();
+    });
+    $('guildApplySave').addEventListener('click', function(){
+      var f = $('guildFieldInput').value.trim();
+      var t = $('guildIntroInput').value.trim();
+      if (!f || !t) { return; }
+      state.guild.apply = { field: f, intro: t, saved: true };
+      save();
+      guildFormOpen = false;
+      paintGuild();
+      var body = $('sheetAtelier').querySelector('.sheet-body');
+      var mine = $('guildList').querySelector('.gh-card.mine');
+      if (body && mine) {
+        window.setTimeout(function(){
+          body.scrollTop = Math.max(0, mine.offsetTop - body.offsetTop - 8);
+        }, 240);
+      }
+    });
+    document.addEventListener('click', function(e){
+      var btn = e.target.closest ? e.target.closest('[data-guild]') : null;
+      if (!btn) { return; }
+      var id = btn.getAttribute('data-guild');
+      var g = null;
+      for (var gi = 0; gi < GUILDS.length; gi++) { if (GUILDS[gi].id === id) { g = GUILDS[gi]; } }
+      if (!g) { return; }
+      var on = !state.guild.votes[id];
+      state.guild.votes[id] = on;
+      save();
+      paintGuild();
+      if (on && guildNow(g) >= g.goal && !state.guild.rewarded[id]) {
+        state.guild.rewarded[id] = true;
+        save();
+        addSeeds(5, e);
+      }
+    });
+
     /* 보물상자 · 선물함 */
     $('chestBtn').addEventListener('click', openChestSheet);
     $('chestCollect').addEventListener('click', function(){
@@ -3032,6 +3266,7 @@ select{
     paintOnsen();
     paintLibrary();
     paintAtelier();
+    paintGuild();
     paintTimer();
     paintMorningTimer();
     paintSeg();
