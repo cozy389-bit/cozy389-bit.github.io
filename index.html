@@ -190,6 +190,61 @@ h2{margin:0;font-size:21px;line-height:1.35;letter-spacing:-.02em;font-weight:80
 }
 .mood-note{margin:12px 0 0;font-size:14px;font-weight:700;color:var(--green);display:flex;align-items:center;gap:6px}
 
+/* ── 오늘의 쉼표 · 나의 숲 노트 ───────────── */
+.tone-lead{margin:10px 0 10px;font-size:13.5px;line-height:1.6;color:var(--muted);font-weight:600}
+.tone-row{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.tone-chip{
+  display:flex;align-items:center;gap:7px;padding:11px 10px;border-radius:14px;text-align:left;
+  background:#F8F6F0;border:1.5px solid #E7E1D4;font-size:13.5px;font-weight:700;color:#4C5349;
+  transition:all .16s ease;
+}
+.tone-chip i{font-style:normal;font-size:17px;line-height:1}
+.tone-chip[aria-pressed="true"]{background:#EAF3EC;border-color:#9CC7AC;color:#244E40;box-shadow:0 3px 9px rgba(46,94,78,.13)}
+.tone-note{margin:10px 0 0;font-size:12.5px;font-weight:800;color:var(--green-dark)}
+.quick-line{display:flex;gap:7px;margin:10px 0 0}
+.quick-line input{
+  flex:1;min-width:0;border:1.5px solid var(--line);border-radius:12px;
+  padding:10px 12px;font-size:14px;background:#fff;color:var(--ink);
+}
+.quick-line input::placeholder{color:#A8A69E}
+.quick-line button{
+  flex:0 0 auto;min-height:44px;padding:0 14px;border-radius:12px;
+  background:var(--green-soft);color:var(--green-dark);font-weight:800;font-size:13.5px;
+}
+.morning-block{margin-top:16px;padding-top:14px;border-top:1px dashed #E8E2D6}
+.morning-block-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:2px}
+.morning-block-head h3{font-size:16px;font-weight:800;letter-spacing:-.01em}
+.note-open-card{
+  display:flex;align-items:center;gap:12px;width:100%;text-align:left;
+  background:linear-gradient(150deg,#FFFDF7,#F8F1E2);border:1px solid #EEDFC2;
+  border-radius:18px;padding:13px 14px;margin:0 0 14px;box-shadow:0 10px 22px rgba(150,118,64,.12);
+}
+.note-open-ico{flex:0 0 42px;height:42px;border-radius:13px;display:grid;place-items:center;font-size:21px;background:#fff;border:1px solid #EFE2C8}
+.note-open-text{min-width:0}
+.note-open-text b{display:block;font-size:15.5px;font-weight:800;letter-spacing:-.01em;color:#3B3226}
+.note-open-text span{display:block;font-size:12px;font-weight:700;color:#9A8A6C;margin-top:2px}
+.note-open-go{margin-left:auto;font-size:20px;font-weight:800;color:#B08A4A}
+.note-book{
+  border-radius:22px;padding:19px 17px 17px;margin:0 0 14px;
+  background:linear-gradient(160deg,#FFFDF6,#F8F1E2 62%,#F4EAD6);
+  border:1px solid #EFDFC2;box-shadow:0 16px 34px rgba(150,118,64,.16);
+}
+.note-book-head{display:flex;flex-direction:column;gap:3px;margin-bottom:12px;border-bottom:1px dashed #E4D3B4;padding-bottom:12px}
+.note-kicker{font-size:11px;font-weight:800;letter-spacing:.12em;color:#A98A52}
+.note-book-title{font-size:19px;font-weight:800;letter-spacing:-.02em;color:#3B3226}
+.note-book-date{font-size:12.5px;font-weight:700;color:#9A8A6C}
+.note-cover{margin:0 0 14px;font-size:14.5px;line-height:1.72;color:#4E4536;white-space:pre-line}
+.note-pieces{display:flex;flex-direction:column;gap:9px}
+.note-piece{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.74);border:1px solid #EEDFC6}
+.note-piece i{font-style:normal;font-size:17px;line-height:1.35}
+.note-piece div{min-width:0}
+.note-piece b{display:block;font-size:11.5px;font-weight:800;color:#A08A62;letter-spacing:.02em}
+.note-piece span{display:block;font-size:14px;font-weight:600;color:#443C2F;line-height:1.55;word-break:break-word}
+.note-piece.sample{border-style:dashed;opacity:.82}
+.note-piece-tag{display:inline-block;font-size:10px;font-weight:800;color:#B08A4A;background:#F7EBD6;border-radius:999px;padding:2px 6px;margin-left:5px;vertical-align:1px}
+.note-sign{margin:13px 0 0;text-align:right;font-size:12.5px;font-weight:800;color:#9A7B45}
+.note-keep-note{margin:10px 0 0;font-size:12.5px;font-weight:800;color:var(--green-dark)}
+
 /* ── quests ──────────────────────────────── */
 .quest{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
 .quest:last-child{border-bottom:0;padding-bottom:2px}
@@ -548,6 +603,14 @@ textarea:focus,input:focus,select:focus{border-color:#9CC4AE;background:#fff;out
 .timer-box .time{font-size:30px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--green-dark)}
 .timer-box .cap{font-size:12.5px;color:var(--muted);font-weight:700;margin-top:-4px}
 .timer-box button{min-width:96px;min-height:48px;border-radius:999px;background:var(--green-soft);color:var(--green-dark);font-weight:800;font-size:15px}
+.timer-box.timer-done{background:#F1F6F1;border-color:#CFE2D3}
+.timer-box.timer-done .time{color:var(--green);font-size:24px;letter-spacing:0}
+.timer-box.soft{background:#FBF9F3;border:1px dashed #E3DBCA;padding:10px 13px}
+.timer-box.soft .time{font-size:19px;color:#8C8574}
+.timer-box.soft .cap{font-size:12px;color:#A29A88;margin-top:0;font-weight:600}
+.timer-box.soft button{min-width:0;min-height:42px;background:#fff;border:1.3px solid #E1D8C6;color:#6C6455;font-size:12.5px;font-weight:800;padding:0 12px;white-space:nowrap}
+.soft-timer-label{font-size:11.5px;font-weight:800;letter-spacing:.04em;color:#A08A62;margin-bottom:1px}
+.soft-timer-label em{font-style:normal;font-size:10px;font-weight:800;color:#9AA39D;background:#EFEDE5;border-radius:999px;padding:1px 6px;margin-left:3px}
 
 .weather-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
 .weather{
@@ -779,12 +842,15 @@ select{
 
 /* ── 여정 길 ────────────────────────────── */
 .journey-card{margin:0 0 14px}
-.journey{position:relative;height:84px;margin:6px 0 0;border-radius:16px;background:linear-gradient(90deg,rgba(247,244,236,.95),rgba(242,239,231,.5))}
+.journey{position:relative;height:94px;margin:6px 0 0;border-radius:16px;background:linear-gradient(90deg,rgba(247,244,236,.95),rgba(242,239,231,.5))}
 .jp-line{position:absolute;left:8%;right:8%;top:29px;height:4px;border-radius:999px;background:repeating-linear-gradient(90deg,#D9D2C2 0 7px,transparent 7px 13px)}
 .jp-fill{position:absolute;left:0;top:0;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#8CBF9F,#2E5E4E);transition:width .95s cubic-bezier(.2,.8,.2,1)}
 .jp-node{position:absolute;top:11px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;transition:opacity .7s ease, filter .7s ease;z-index:2}
 .jp-node i{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:13px;font-weight:800;background:#fff;border:2px solid #E3DED3;color:var(--muted);box-shadow:0 2px 7px rgba(46,94,78,.07);transition:all .5s ease}
 .jp-node span{font-size:10.5px;font-weight:700;color:var(--muted);white-space:nowrap}
+.jp-node.jp-last span{font-size:9.5px;letter-spacing:-.02em}
+.jp-fin{display:block;font-size:9px;font-weight:800;line-height:1.35;letter-spacing:.02em;color:#8A5A16;background:#F7E7C6;border:1px solid #EFD6AC;border-radius:999px;padding:1px 6px}
+.jp-node.on .jp-fin{background:#F2B85F;border-color:#E0A34A;color:#4A3008}
 .jp-node.on i{background:var(--green);border-color:var(--green);color:#fff;box-shadow:0 4px 10px rgba(46,94,78,.22)}
 .jp-node.on span{color:var(--green-dark)}
 .jp-node.here i{border-color:#E7B768;box-shadow:0 0 0 4px rgba(231,183,104,.24)}
@@ -1026,6 +1092,67 @@ select{
         </p>
       </div>
 
+      <div class="card" id="morningCard">
+        <div class="section-head">
+          <h2>오늘의 쉼표</h2>
+          <span class="hint" id="toneCount">톡 고르기</span>
+        </div>
+        <p class="secret-note">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10.5" width="14" height="9.5" rx="2.4" stroke="#8A7452" stroke-width="1.8"/><path d="M8.5 10.5V8.2a3.5 3.5 0 0 1 7 0v2.3" stroke="#8A7452" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="15" r="1.4" fill="#8A7452"/></svg>
+          <span>나만의 비밀 서랍 · 아무에게도 공개되지 않아요</span>
+        </p>
+        <p class="tone-lead">말로 쓰지 않아도 괜찮아요. 오늘 마음에 닿는 것 하나만 눌러도 기록 한 조각이 남아요.</p>
+        <div class="tone-row" id="toneRow" role="group" aria-label="오늘의 쉼표 고르기">
+          <button class="tone-chip" type="button" data-tone="light" aria-pressed="false"><i aria-hidden="true">🌤</i>마음이 가벼워요</button>
+          <button class="tone-chip" type="button" data-tone="warm" aria-pressed="false"><i aria-hidden="true">🍵</i>따뜻했어요</button>
+          <button class="tone-chip" type="button" data-tone="move" aria-pressed="false"><i aria-hidden="true">🚶</i>몸을 움직였어요</button>
+          <button class="tone-chip" type="button" data-tone="thanks" aria-pressed="false"><i aria-hidden="true">💌</i>고마웠어요</button>
+        </div>
+        <div class="quick-line">
+          <input id="quickLine" type="text" maxlength="80" placeholder="한 줄만 덧붙이고 싶다면 (선택)" aria-label="오늘 한 줄 기록">
+          <button type="button" id="quickLineBtn">노트에 담기</button>
+        </div>
+        <p class="tone-note" id="toneNote" hidden></p>
+
+        <div class="morning-block">
+          <div class="morning-block-head">
+            <h3>아침 마음 비우기</h3>
+            <span class="hint">모닝 페이지</span>
+          </div>
+          <p class="morning-lead">생각나는 대로 편하게 쏟아내세요. 다른 사람에게는 절대 보이지 않아요.</p>
+          <div class="timer-box morning-timer soft" id="morningTimerBox">
+            <div>
+              <div class="soft-timer-label">3분 쉼표 <em>선택</em></div>
+              <div class="time" id="morningTimer">03:00</div>
+              <div class="cap" id="morningTimerCap">숫자는 참고만 하세요</div>
+            </div>
+            <button type="button" id="morningTimerBtn">3분 쉼표 켜기</button>
+          </div>
+          <textarea id="morningInput" rows="5" maxlength="2000" placeholder="예) 오늘 아침 창밖이 유난히 밝았어. 어제 못 한 일이 자꾸 마음에 걸린다…" aria-label="아침 마음 비우기 기록"></textarea>
+          <button class="btn btn-primary" id="saveMorningBtn" type="button" style="margin-top:10px">비밀 서랍에 넣고 +10 씨앗</button>
+          <p class="saved-note" id="morningSaved" hidden>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="#2E5E4E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span id="morningSavedText">오늘 모닝 페이지를 채웠어요 · +10 씨앗</span>
+          </p>
+        </div>
+        <div class="drawer-box">
+          <div class="drawer-head">
+            <span>🔒 서랍 속 <b id="drawerCount">0장</b></span>
+            <button class="drawer-toggle" type="button" id="drawerToggle" aria-expanded="false" aria-controls="drawerList">열어 보기</button>
+          </div>
+          <div class="drawer-list" id="drawerList" hidden></div>
+        </div>
+      </div>
+
+      <button class="note-open-card" id="noteOpenBtn" type="button" aria-label="나의 숲 노트 보기">
+        <span class="note-open-ico" aria-hidden="true">📖</span>
+        <span class="note-open-text">
+          <b>나의 숲 노트 보기</b>
+          <span id="noteOpenSub">오늘 남긴 조각이 나만의 작은 책이 돼요</span>
+        </span>
+        <span class="note-open-go" aria-hidden="true">›</span>
+      </button>
+
       <div class="card">
         <div class="section-head">
           <h2>오늘의 퀘스트</h2>
@@ -1126,40 +1253,8 @@ select{
         </div>
       </div>
 
-      <div class="card" id="morningCard">
-        <div class="section-head">
-          <h2>아침 마음 비우기</h2>
-          <span class="hint">모닝 페이지</span>
-        </div>
-        <p class="secret-note">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10.5" width="14" height="9.5" rx="2.4" stroke="#8A7452" stroke-width="1.8"/><path d="M8.5 10.5V8.2a3.5 3.5 0 0 1 7 0v2.3" stroke="#8A7452" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="15" r="1.4" fill="#8A7452"/></svg>
-          <span>나만의 비밀 서랍 · 아무에게도 공개되지 않아요</span>
-        </p>
-        <p class="morning-lead">생각나는 대로 편하게 쏟아내세요. 다른 사람에게는 절대 보이지 않아요.</p>
-        <div class="timer-box morning-timer">
-          <div>
-            <div class="time" id="morningTimer">03:00</div>
-            <div class="cap">3분 동안, 손이 가는 대로</div>
-          </div>
-          <button type="button" id="morningTimerBtn">3분 시작</button>
-        </div>
-        <textarea id="morningInput" rows="5" maxlength="2000" placeholder="예) 오늘 아침 창밖이 유난히 밝았어. 어제 못 한 일이 자꾸 마음에 걸린다…" aria-label="아침 마음 비우기 기록"></textarea>
-        <button class="btn btn-primary" id="saveMorningBtn" type="button" style="margin-top:10px">비밀 서랍에 넣고 +10 씨앗</button>
-        <p class="saved-note" id="morningSaved" hidden>
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="#2E5E4E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span id="morningSavedText">오늘 모닝 페이지를 채웠어요 · +10 씨앗</span>
-        </p>
-        <div class="drawer-box">
-          <div class="drawer-head">
-            <span>🔒 서랍 속 <b id="drawerCount">0장</b></span>
-            <button class="drawer-toggle" type="button" id="drawerToggle" aria-expanded="false" aria-controls="drawerList">열어 보기</button>
-          </div>
-          <div class="drawer-list" id="drawerList" hidden></div>
-        </div>
-      </div>
-
       <button class="link-reset" id="resetBtn" type="button">시제품을 처음 상태로 되돌리기</button>
-      <p class="foot-note">이 화면은 〈두 번째 숲〉 시제품이에요.<br>적은 내용은 이 브라우저에만 저장되고 밖으로 나가지 않아요.</p>
+      <p class="foot-note">이 화면은 〈두 번째 숲〉 시제품이에요. <br>적은 내용은 이 브라우저에만 저장되고 밖으로 나가지 않아요.</p>
     </section>
 
     <!-- ═══ 화면 2 · 탐험 지도 ═══ -->
@@ -1172,14 +1267,14 @@ select{
           <h2 style="font-size:18px">여정 길</h2>
           <span class="hint" id="journeyCount">0 / 4</span>
         </div>
-        <p class="hint" style="display:block;white-space:normal;margin:0;font-size:12.5px">섬을 마칠 때마다 말이 한 걸음 앞으로 나가고, 안개가 걷혀요.</p>
+        <p class="hint" style="display:block;white-space:normal;margin:0;font-size:12.5px">네 섬을 하나씩 마칠 때마다 말이 한 걸음 나아가고, 안개가 걷혀요. 넷을 다 마치면 완주예요.</p>
         <div class="journey" id="journeyTrack">
           <div class="jp-line"><i class="jp-fill" id="journeyFill"></i></div>
           <div class="jp-node" data-jn="0"><i>🏁</i><span>출발</span></div>
           <div class="jp-node" data-jn="1"><i>1</i><span>활력</span></div>
           <div class="jp-node" data-jn="2"><i>2</i><span>온천</span></div>
           <div class="jp-node" data-jn="3"><i>3</i><span>서재</span></div>
-          <div class="jp-node" data-jn="4"><i>4</i><span>완주</span></div>
+          <div class="jp-node jp-last" data-jn="4"><i>4</i><span>재능의 공방</span><b class="jp-fin" hidden>완주</b></div>
           <div class="jp-fog" id="journeyFog"></div>
           <div class="jp-horse" id="journeyHorse"><span class="horse-body">🐴</span></div>
         </div>
@@ -1286,7 +1381,7 @@ select{
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
           내 경험 카드 올리기
         </button>
-        <p class="foot-note">‘궁금해요’는 말 대신 누르는 인사예요.<br>올린 카드는 이 기기의 이 브라우저에만 저장돼요.</p>
+        <p class="foot-note">‘궁금해요’는 말 대신 누르는 인사예요. <br>올린 카드는 이 기기의 이 브라우저에만 저장돼요.</p>
       </div>
 
       <!-- ── 2. 모닥불 온기 살롱 ── -->
@@ -1304,7 +1399,7 @@ select{
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
           내 글 올리기 (+5 씨앗)
         </button>
-        <p class="foot-note">긴 댓글 대신 스탬프 세 개로 마음을 건네요.<br>적은 글은 이 기기의 이 브라우저에만 저장돼요.</p>
+        <p class="foot-note">긴 댓글 대신 스탬프 세 개로 마음을 건네요. <br>적은 글은 이 기기의 이 브라우저에만 저장돼요.</p>
       </div>
 
       <!-- ── 3. 품앗이 교환소 ── -->
@@ -1322,7 +1417,7 @@ select{
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
           내 품앗이 올리기
         </button>
-        <p class="foot-note">돈은 오가지 않아요. 서로의 시간과 손길만 바꿔요.<br>올린 품앗이는 이 기기의 이 브라우저에만 저장돼요.</p>
+        <p class="foot-note">돈은 오가지 않아요. 서로의 시간과 손길만 바꿔요. <br>올린 품앗이는 이 기기의 이 브라우저에만 저장돼요.</p>
       </div>
     </section>
 
@@ -1378,10 +1473,10 @@ select{
           <span class="txt"><b>벽 짚고 종아리 펴기 1분</b><em>숨을 쉬면서 20초씩</em></span>
           <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </button>
-        <div class="timer-box">
+        <div class="timer-box" id="forestTimerBox">
           <div>
             <div class="time" id="forestTimer">05:00</div>
-            <div class="cap">남은 2분은 창밖을 봐도 좋아요</div>
+            <div class="cap" id="forestTimerCap">5분 동안 천천히, 숨을 고르며</div>
           </div>
           <button type="button" id="forestTimerBtn">5분 시작</button>
         </div>
@@ -1482,7 +1577,7 @@ select{
           <input type="text" id="dateInput" maxlength="40" placeholder="직접 정해도 좋아요 (예) 오래된 레코드 가게" aria-label="나홀로 소풍 직접 적기">
           <div class="done-banner artdate-done" id="artDateDone" hidden>
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="#2E5E4E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            이번 주 소풍 완료 · 선물함에 🎒 나홀로 소풍가 배지를 놓았어요
+            이번 주 소풍 완료 · 선물함에 🎒 나홀로 소풍 배지를 놓았어요
           </div>
           <button class="btn btn-primary" type="button" id="artDateBtn" disabled>미션을 고르면 다녀온 걸로 할 수 있어요</button>
         </div>
@@ -1834,6 +1929,39 @@ select{
     </div>
   </div>
 
+  <!-- ═══ 나의 숲 노트 · 나만의 작은 책 ═══ -->
+  <div class="overlay" id="sheetNote" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="noteTitle">
+      <div class="sheet-grab" aria-hidden="true"></div>
+      <div class="sheet-head">
+        <h2 id="noteTitle">📖 나의 숲 노트</h2>
+        <p>오늘 남긴 조각들이 한 장의 기록집이 돼요.</p>
+        <button class="sheet-close" type="button" data-close aria-label="닫기">
+          <svg viewBox="0 0 24 24" fill="none"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="sheet-body">
+        <article class="note-book" id="noteBook" aria-label="나만의 기록집 카드">
+          <div class="note-book-head">
+            <span class="note-kicker">나만의 작은 책 · 1쪽</span>
+            <strong class="note-book-title" id="noteBookTitle">탐험가님의 오늘</strong>
+            <span class="note-book-date" id="noteBookDate">오늘</span>
+          </div>
+          <p class="note-cover" id="noteCover"></p>
+          <div class="note-pieces" id="notePieces"></div>
+          <p class="note-sign">— 두 번째 숲, 나의 기록</p>
+        </article>
+        <p class="foot-note" style="margin:2px 4px 14px">이 노트는 이 기기에만 저장되고, 아무에게도 공개되지 않아요.</p>
+        <button class="btn btn-primary" type="button" id="noteLessonBtn">🧶 이 기록으로 미니 수업 제안하기</button>
+        <button class="btn btn-ghost" type="button" id="noteKeepBtn" style="margin-top:9px">📋 내 기록 복사해서 간직하기</button>
+        <p class="note-keep-note" id="noteKeepDone" hidden></p>
+      </div>
+      <div class="sheet-foot">
+        <button class="btn btn-primary" type="button" id="noteCloseBtn">닫기</button>
+      </div>
+    </div>
+  </div>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </div>
 
@@ -1868,8 +1996,13 @@ select{
       userName: '탐험가',
       seeds: 120,
       mood: null,
+      tones: [],
+      quickDraft: '',
       quests: { water: false, manual: false },
       morning: { entries: [], rewardedDay: null },
+      morningDraft: '',
+      morningTimer: { left: 180, endAt: 0, running: false },
+      noteKeeps: [],
       criticIdx: 0,
       artDate: { week: '', pick: '', custom: '', done: false },
       artDates: [],
@@ -1944,6 +2077,15 @@ select{
     return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
       return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
     });
+  }
+  /* 받침에 따라 '로 / 으로'를 골라요 (좋아요→로, 그럭저럭→으로) */
+  function josaRo(word){
+    var s = String(word == null ? '' : word).replace(/\s+$/, '');
+    if (!s) { return '로'; }
+    var c = s.charCodeAt(s.length - 1);
+    if (c < 0xAC00 || c > 0xD7A3) { return '로'; }
+    var jong = (c - 0xAC00) % 28;
+    return (jong === 0 || jong === 8) ? '로' : '으로';
   }
   var toastTimer = null;
   function toast(msg){
@@ -2057,7 +2199,7 @@ select{
     { id: 'hand',  ico: '🧶', name: '손재주' },
     { id: 'cheer', ico: '💚', name: '응원왕' },
     { id: 'record',ico: '✒️', name: '기록가' },
-    { id: 'artdate',ico: '🎒', name: '나홀로 소풍가' }
+    { id: 'artdate',ico: '🎒', name: '나홀로 소풍' }
   ];
   function badgeOn(id){
     if (id === 'first') { return state.quests.water || state.quests.manual; }
@@ -2075,7 +2217,7 @@ select{
       moods[i].setAttribute('aria-pressed', moods[i].getAttribute('data-mood') === state.mood ? 'true' : 'false');
     }
     if (state.mood) {
-      $('moodHint').textContent = state.mood + '으로 남겼어요';
+      $('moodHint').textContent = state.mood + josaRo(state.mood) + ' 남겼어요';
       $('moodNote').hidden = false;
       $('moodNoteText').textContent = '오늘 기분을 남겼어요 · +5 씨앗';
     } else {
@@ -2130,45 +2272,126 @@ select{
     }
 
     paintMorning();
+    paintTones();
+    paintNote();
     if (!animating) { displayed = state.seeds; setSeedText(state.seeds); }
     paintChest();
     paintLessonTags();
   }
 
   /* ── 모닝 페이지 · 비밀 서랍 ─────────── */
-  var morningId = null, morningLeft = 180;
+  var MORNING_FULL = 180;
+  var morningId = null, morningLeft = MORNING_FULL;
+  function morningTimerState(){
+    if (!state.morningTimer || typeof state.morningTimer !== 'object') {
+      state.morningTimer = { left: MORNING_FULL, endAt: 0, running: false };
+    }
+    var t = state.morningTimer;
+    if (typeof t.left !== 'number') { t.left = MORNING_FULL; }
+    if (typeof t.endAt !== 'number') { t.endAt = 0; }
+    t.running = !!t.running;
+    return t;
+  }
+  function morningLeftNow(){
+    var t = morningTimerState();
+    if (morningId && t.endAt) {
+      return Math.max(0, Math.min(MORNING_FULL, Math.ceil((t.endAt - Date.now()) / 1000)));
+    }
+    return Math.max(0, Math.min(MORNING_FULL, morningLeft));
+  }
   function paintMorningTimer(){
-    var left = Math.max(0, morningLeft);
+    var left = morningLeftNow();
+    morningLeft = left;
     var m = Math.floor(left / 60), s = left % 60;
     $('morningTimer').textContent = (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
-  }
-  function stopMorningTimer(){
-    if (morningId) { window.clearInterval(morningId); morningId = null; }
     var b = $('morningTimerBtn');
-    if (b) { b.textContent = (morningLeft > 0 && morningLeft < 180) ? '계속' : '3분 시작'; }
+    if (b) {
+      b.textContent = morningId ? '잠깐 멈춤' : (left > 0 && left < MORNING_FULL ? '이어서 해요' : '3분 쉼표 켜기');
+    }
+    var cap = $('morningTimerCap');
+    if (cap) {
+      if (left <= 0) { cap.textContent = '3분을 가만히 쉬었어요'; }
+      else if (morningId) { cap.textContent = '언제 멈춰도 괜찮아요'; }
+      else if (left < MORNING_FULL) { cap.textContent = '잠깐 멈췄어요 · 남은 ' + (m > 0 ? m + '분' : s + '초'); }
+      else { cap.textContent = '숫자는 참고만 하세요'; }
+    }
   }
-  function toggleMorningTimer(){
-    if (morningId) {
-      window.clearInterval(morningId);
-      morningId = null;
-      $('morningTimerBtn').textContent = '계속';
+  function morningTick(){
+    var t = morningTimerState();
+    var left = t.endAt ? Math.max(0, Math.ceil((t.endAt - Date.now()) / 1000)) : 0;
+    if (left > MORNING_FULL) { left = MORNING_FULL; }
+    morningLeft = left;
+    t.left = left;
+    if (left <= 0) {
+      if (morningId) { window.clearInterval(morningId); morningId = null; }
+      t.running = false; t.endAt = 0; t.left = 0;
+      save();
+      paintMorningTimer();
+      toast('3분을 가만히 쉬었어요. 남은 생각은 서랍에 넣어 두세요.');
       return;
     }
-    if (morningLeft <= 0) { morningLeft = 180; paintMorningTimer(); }
-    $('morningTimerBtn').textContent = '잠깐 멈춤';
-    morningId = window.setInterval(function(){
-      morningLeft -= 1;
-      if (morningLeft <= 0) {
-        window.clearInterval(morningId);
-        morningId = null;
-        morningLeft = 180;
+    paintMorningTimer();
+  }
+  function startMorningTimer(){
+    var t = morningTimerState();
+    var left = morningLeftNow();
+    if (left <= 0 || left > MORNING_FULL) { left = MORNING_FULL; }
+    morningLeft = left;
+    t.left = left;
+    t.endAt = Date.now() + left * 1000;
+    t.running = true;
+    save();
+    if (morningId) { window.clearInterval(morningId); }
+    morningId = window.setInterval(morningTick, 500);
+    paintMorningTimer();
+  }
+  function pauseMorningTimer(){
+    var t = morningTimerState();
+    var left = morningLeftNow();
+    if (morningId) { window.clearInterval(morningId); morningId = null; }
+    morningLeft = left;
+    t.left = left; t.endAt = 0; t.running = false;
+    save();
+    paintMorningTimer();
+  }
+  function toggleMorningTimer(){
+    if (morningId) { pauseMorningTimer(); } else { startMorningTimer(); }
+  }
+  function resetMorningTimer(){
+    if (morningId) { window.clearInterval(morningId); morningId = null; }
+    morningLeft = MORNING_FULL;
+    var t = morningTimerState();
+    t.left = MORNING_FULL; t.endAt = 0; t.running = false;
+    paintMorningTimer();
+  }
+  function stopMorningTimer(){
+    resetMorningTimer();
+  }
+  function restoreMorningTimer(){
+    var t = morningTimerState();
+    if (t.running && t.endAt) {
+      var left = Math.ceil((t.endAt - Date.now()) / 1000);
+      if (left > 0) {
+        morningLeft = Math.min(MORNING_FULL, left);
+        if (morningId) { window.clearInterval(morningId); }
+        morningId = window.setInterval(morningTick, 500);
         paintMorningTimer();
-        $('morningTimerBtn').textContent = '3분 시작';
-        toast('3분을 비웠어요. 남은 생각은 서랍에 넣어 두세요.');
         return;
       }
+      t.running = false; t.endAt = 0; t.left = 0;
+      morningLeft = 0;
+      save();
       paintMorningTimer();
-    }, 1000);
+      return;
+    }
+    morningLeft = (t.left > 0 && t.left <= MORNING_FULL) ? t.left : MORNING_FULL;
+    paintMorningTimer();
+  }
+  function restoreMorningDraft(){
+    var el = $('morningInput');
+    if (el && !el.value && state.morningDraft) { el.value = state.morningDraft; }
+    var q = $('quickLine');
+    if (q && !q.value && state.quickDraft) { q.value = state.quickDraft; }
   }
   function paintMorning(){
     var m = state.morning || { entries: [], rewardedDay: null };
@@ -2189,22 +2412,246 @@ select{
     }
     list.innerHTML = html;
   }
-  function saveMorning(ev){
-    var v = $('morningInput').value.trim();
-    if (!v) { toast('마음에 떠오르는 대로 한 줄만 적어 주세요'); $('morningInput').focus(); return; }
+  function addMorningEntry(text, kind, ev){
     if (!state.morning) { state.morning = { entries: [], rewardedDay: null }; }
     var first = state.morning.rewardedDay !== todayKey();
-    state.morning.entries.push({ at: stampNow(), text: v });
+    state.morning.entries.push({ at: stampNow(), text: text, kind: kind || 'morning' });
     if (first) { state.morning.rewardedDay = todayKey(); }
     save();
-    $('morningInput').value = '';
     paintHome();
     if (first) {
       addSeeds(10, ev);
-      toast('비밀 서랍에 넣었어요 · +10 씨앗');
+      toast((kind === 'line' ? '한 줄을 노트에 담았어요' : '비밀 서랍에 넣었어요') + ' · +10 씨앗');
     } else {
-      toast('서랍에 한 장 더 넣었어요');
+      toast(kind === 'line' ? '한 줄을 노트에 담았어요' : '서랍에 한 장 더 넣었어요');
     }
+  }
+  function saveMorning(ev){
+    var v = $('morningInput').value.trim();
+    if (!v) { toast('마음에 떠오르는 대로 한 줄만 적어 주세요'); $('morningInput').focus(); return; }
+    $('morningInput').value = '';
+    state.morningDraft = '';
+    addMorningEntry(v, 'morning', ev);
+    resetMorningTimer();
+  }
+  function saveQuickLine(ev){
+    var el = $('quickLine');
+    var v = (el.value || '').trim();
+    if (!v) { toast('한 줄을 적거나, 위의 쉼표를 하나 눌러 주세요'); if (el.focus) { el.focus(); } return; }
+    el.value = '';
+    state.quickDraft = '';
+    addMorningEntry(v, 'line', ev);
+    paintNote();
+  }
+
+  /* ── 오늘의 쉼표 · 나의 숲 노트 ─────────── */
+  var TONES = [
+    { id: 'light', ico: '🌤', label: '마음이 가벼워요', note: '마음이 조금 가벼운 하루' },
+    { id: 'warm', ico: '🍵', label: '따뜻했어요', note: '따뜻한 것이 고마운 하루' },
+    { id: 'move', ico: '🚶', label: '몸을 움직였어요', note: '몸을 조금 움직인 하루' },
+    { id: 'thanks', ico: '💌', label: '고마웠어요', note: '누군가가 고마운 하루' }
+  ];
+  function toneById(id){
+    for (var i = 0; i < TONES.length; i++) { if (TONES[i].id === id) { return TONES[i]; } }
+    return null;
+  }
+  function toneList(){ return Array.isArray(state.tones) ? state.tones : []; }
+  function paintTones(){
+    var btns = document.querySelectorAll('#toneRow .tone-chip');
+    var sel = toneList();
+    for (var i = 0; i < btns.length; i++) {
+      var id = btns[i].getAttribute('data-tone');
+      btns[i].setAttribute('aria-pressed', sel.indexOf(id) >= 0 ? 'true' : 'false');
+    }
+    var hint = $('toneCount');
+    if (hint) { hint.textContent = sel.length ? '오늘 ' + sel.length + '조각 담았어요' : '톡 고르기'; }
+    var note = $('toneNote');
+    if (note) {
+      note.hidden = !sel.length;
+      if (sel.length) { note.textContent = '노트에 ' + sel.length + '조각을 담았어요 · 아래 📖 나의 숲 노트에서 확인해 보세요'; }
+    }
+    var sub = $('noteOpenSub');
+    if (sub) { sub.textContent = notePieceCount() ? '오늘 남긴 ' + notePieceCount() + '조각 · 나만의 작은 책' : '오늘 남긴 조각이 나만의 작은 책이 돼요'; }
+  }
+  function toggleTone(id){
+    var sel = toneList();
+    var at = sel.indexOf(id);
+    if (at >= 0) { sel.splice(at, 1); } else { sel.push(id); }
+    state.tones = sel;
+    save();
+    paintTones();
+    paintNote();
+    var t = toneById(id);
+    if (at < 0 && t) { toast('노트에 한 조각 담았어요 · ' + t.label); }
+  }
+
+  function shorten(s, n){
+    s = String(s == null ? '' : s).replace(/\s+/g, ' ').trim();
+    return s.length > n ? s.slice(0, n).trim() + '…' : s;
+  }
+  function notePieces(){
+    var out = [];
+    if (state.mood) { out.push({ ico: '☀️', label: '오늘의 기분', text: state.mood }); }
+    var sel = toneList();
+    for (var i = 0; i < sel.length; i++) {
+      var t = toneById(sel[i]);
+      if (t) { out.push({ ico: t.ico, label: '오늘의 쉼표', text: t.note }); }
+    }
+    var entries = (state.morning && state.morning.entries) || [];
+    var shown = 0;
+    for (var e = entries.length - 1; e >= 0 && shown < 2; e--) {
+      out.push({ ico: entries[e].kind === 'line' ? '✒️' : '📖', label: '내가 남긴 한 줄', text: shorten(entries[e].text, 70) });
+      shown++;
+    }
+    if (state.artDates && state.artDates.length) {
+      var ad = state.artDates[state.artDates.length - 1];
+      out.push({ ico: '🎒', label: '나홀로 소풍', text: shorten(ad.mission, 60) });
+    }
+    var a = state.answers || {};
+    var ans = [a.a1, a.a2, a.a3].filter(function(v){ return v && String(v).trim(); });
+    if (ans.length) {
+      var deck = (state.deckIdx !== null && typeof state.deckIdx !== 'undefined') ? DECK[state.deckIdx] : null;
+      out.push({ ico: '🃏', label: '서재 카드 답' + (deck ? ' · ' + deck.t : ''), text: shorten(ans.join(' / '), 80) });
+    }
+    var ls = state.lesson || {};
+    if (ls.note && String(ls.note).trim()) {
+      out.push({ ico: '🎧', label: '미니 강의 한 단어', text: shorten(ls.note, 40) });
+    }
+    var islands = 0, names = [];
+    var order = [['forest', '활력의 숲'], ['onsen', '마음의 온천'], ['library', '지혜의 서재'], ['atelier', '재능의 공방']];
+    for (var k = 0; k < order.length; k++) {
+      if (state.islands && state.islands[order[k][0]]) { islands++; names.push(order[k][1]); }
+    }
+    if (islands) { out.push({ ico: '🌿', label: '오늘 다녀온 섬 ' + islands + '/4', text: names.join(' · ') }); }
+    return out;
+  }
+  function notePieceCount(){ return notePieces().length; }
+  function noteSamples(){
+    return [
+      { ico: '🌤', label: '오늘의 쉼표', text: '마음이 조금 가벼운 하루', sample: true },
+      { ico: '✒️', label: '내가 남긴 한 줄', text: '창문을 열었더니 바람이 좋았다.', sample: true }
+    ];
+  }
+  function paintNote(){
+    var name = displayName();
+    var title = $('noteBookTitle');
+    if (title) { title.textContent = name + '님의 숲 노트'; }
+    var date = $('noteBookDate');
+    if (date) { date.textContent = dateLabel(new Date()); }
+    var real = notePieces();
+    var pieces = real.length ? real : noteSamples();
+    var cover = $('noteCover');
+    if (cover) {
+      if (!real.length) {
+        cover.textContent = '아직 첫 쪽이 비어 있어요. 위의 쉼표 하나만 눌러도 오늘의 조각이 여기에 담겨요.\n이렇게 한 장씩 쌓이면, 그게 나만의 기록집이 돼요.';
+      } else {
+        var bits = [];
+        var sel = toneList();
+        for (var i = 0; i < sel.length; i++) { var t = toneById(sel[i]); if (t) { bits.push(t.label); } }
+        if (state.mood) { bits.push('마음 ‘' + state.mood + '’'); }
+        var s = '오늘 ' + name + '님의 하루 — ';
+        s += bits.length ? bits.join(' · ') : '작은 기록 하나';
+        s += '. ';
+        var entries = (state.morning && state.morning.entries) || [];
+        if (entries.length) { s += '‘' + shorten(entries[entries.length - 1].text, 28) + '’라고 적어 두셨어요. '; }
+        if (state.islands && state.islands.atelier) { s += '재능의 공방까지 돌아, 이 기록이 곧 나의 10분 수업 재료가 됐어요.'; }
+        else { s += '이 조각들이 모여 나만의 한 쪽이 됐어요.'; }
+        cover.textContent = s;
+      }
+    }
+    var box = $('notePieces');
+    if (box) {
+      var html = '';
+      for (var p = 0; p < pieces.length; p++) {
+        var pc = pieces[p];
+        html += '<div class="note-piece' + (pc.sample ? ' sample' : '') + '">' +
+          '<i aria-hidden="true">' + pc.ico + '</i>' +
+          '<div><b>' + esc(pc.label) + (pc.sample ? '<span class="note-piece-tag">예시</span>' : '') + '</b>' +
+          '<span>' + esc(pc.text) + '</span></div></div>';
+      }
+      box.innerHTML = html;
+    }
+    var sub = $('noteOpenSub');
+    if (sub) { sub.textContent = notePieceCount() ? '오늘 남긴 ' + notePieceCount() + '조각 · 나만의 작은 책' : '오늘 남긴 조각이 나만의 작은 책이 돼요'; }
+    var keep = $('noteKeepDone');
+    if (keep && state.noteKeeps && state.noteKeeps.length) {
+      keep.hidden = false;
+      keep.textContent = '간직한 노트 ' + state.noteKeeps.length + '권 · 이 기기에만 남아 있어요';
+    }
+  }
+  function notePlainText(){
+    var lines = [];
+    lines.push('📖 나의 숲 노트 — ' + displayName() + '님의 ' + dateLabel(new Date()));
+    lines.push('');
+    var pieces = notePieces();
+    for (var i = 0; i < pieces.length; i++) {
+      lines.push('· ' + pieces[i].label + ' — ' + pieces[i].text);
+    }
+    if (!pieces.length) { lines.push('· 아직 비어 있는 첫 쪽'); }
+    lines.push('');
+    lines.push('〈두 번째 숲〉 시제품 · 이 기기에만 저장된 기록이에요.');
+    return lines.join('\n');
+  }
+  function copyText(t){
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = t;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-1000px';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, t.length);
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e0) { ok = false; }
+      document.body.removeChild(ta);
+      if (ok) { return true; }
+    } catch (e) {}
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        var p = navigator.clipboard.writeText(t);
+        if (p && p.catch) { p.catch(function(){}); }
+        return true;
+      }
+    } catch (e2) {}
+    return false;
+  }
+  function keepNote(){
+    var text = notePlainText();
+    var copied = copyText(text);
+    if (!Array.isArray(state.noteKeeps)) { state.noteKeeps = []; }
+    state.noteKeeps.push({ at: stampNow(), day: todayKey(), text: text });
+    save();
+    paintNote();
+    var done = $('noteKeepDone');
+    if (done) { done.textContent = '간직한 노트 ' + state.noteKeeps.length + '권' + (copied ? ' · 복사했어요' : ' · 이 기기에만 남아 있어요'); }
+    toast(copied ? '내 기록을 복사해 노트에 간직했어요' : '내 기록을 노트에 간직했어요');
+  }
+  function noteToLesson(){
+    var pieces = notePieces();
+    var sel = toneList();
+    var t = sel.length ? toneById(sel[0]) : null;
+    var seed = t ? t.label : (state.mood ? '마음 ‘' + state.mood + '’' : '오늘의 기록');
+    var line = (state.morning && state.morning.entries && state.morning.entries.length)
+      ? shorten(state.morning.entries[state.morning.entries.length - 1].text, 24) : '';
+    var craft = '내 기록으로 여는 10분 — ' + seed + (line ? ' (‘' + line + '’)' : '');
+    if (craft.length > 120) { craft = craft.slice(0, 119) + '…'; }
+    state.craft = craft;
+    if (!state.guild) { state.guild = { votes: {}, rewarded: {}, apply: {} }; }
+    if (!state.guild.apply) { state.guild.apply = { field: '', intro: '', saved: false }; }
+    state.guild.apply.field = '내 기록으로 여는 이야기';
+    state.guild.apply.intro = shorten('‘' + seed + '’에서 시작한 10분 — 중년의 하루를 다시 쓰는 이야기 수업', 78);
+    save();
+    closeSheet($('sheetNote'));
+    openSheet('sheetAtelier');
+    guildFormOpen = true;
+    paintAtelier();
+    paintGuild();
+    var body = $('sheetAtelier').querySelector('.sheet-body');
+    var box = $('craftInput');
+    if (body && box) { window.setTimeout(function(){ body.scrollTop = Math.max(0, box.offsetTop - body.offsetTop - 12); }, 240); }
+    toast('내 기록이 수업 재료로 채워졌어요 · 한 줄만 다듬어 보세요');
   }
 
   /* ── 탐험 지도 ───────────────────────── */
@@ -2232,7 +2679,7 @@ select{
   }
 
   /* ── 여정 길 ─────────────────────────── */
-  var JNODES = [8, 29, 50, 71, 92];
+  var JNODES = [8, 29, 50, 71, 88];
   var lastJourney = -1;
   (function initJourneyNodes(){
     var nodes = document.querySelectorAll('.jp-node');
@@ -2244,7 +2691,7 @@ select{
     '출발선에 서 있어요. 오늘은 어느 섬부터 갈까요?',
     '활력의 숲을 지나 한 걸음 나아갔어요.',
     '마음의 온천까지 왔어요. 절반을 넘었네요.',
-    '지혜의 서재를 지나 완주가 보여요.',
+    '지혜의 서재까지 왔어요. 이제 재능의 공방만 남았어요.',
     '네 섬을 모두 돌아 완주했어요! 안개가 다 걷혔어요.'
   ];
   function paintJourney(count){
@@ -2263,6 +2710,8 @@ select{
       nodes[i].classList.toggle('here', i === count);
       var badge = nodes[i].querySelector('i');
       if (badge && i > 0) { badge.textContent = reached ? '✓' : String(i); }
+      var fin = nodes[i].querySelector('.jp-fin');
+      if (fin) { fin.hidden = !reached; }
     }
     $('journeyCount').textContent = count + ' / 4';
     var cap = $('journeyCaption');
@@ -2821,6 +3270,7 @@ select{
     paintIslandButton(key);
     paintMap();
     paintHome();
+    paintTimer();
     toast('🌿 ' + meta.name + ' 스탬프를 찍었어요');
   }
   function paintIslandButton(key){
@@ -2841,38 +3291,65 @@ select{
 
   /* ── 섬 1 · 활력의 숲 ──────────────── */
   var timerId = null, timerLeft = 300;
+  function forestDone(){
+    return !!(state.islands && state.islands.forest);
+  }
   function paintTimer(){
+    var time = $('forestTimer');
+    var cap = $('forestTimerCap');
+    var b = $('forestTimerBtn');
+    var box = $('forestTimerBox');
+    if (forestDone()) {
+      if (timerId) { window.clearInterval(timerId); timerId = null; }
+      timerLeft = 0;
+      time.textContent = '완료';
+      if (b) { b.hidden = true; b.disabled = true; b.textContent = '완료'; }
+      if (box) { box.classList.add('timer-done'); }
+      if (cap) { cap.textContent = '오늘의 5분을 마쳤어요 · 몸 깨우기 기록이 남았어요'; }
+      return;
+    }
     var m = Math.floor(timerLeft / 60);
     var s = timerLeft % 60;
-    $('forestTimer').textContent = (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
+    time.textContent = (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
+    if (box) { box.classList.remove('timer-done'); }
+    if (b) {
+      b.hidden = false;
+      b.disabled = false;
+      b.textContent = timerId ? '잠깐 멈춤' : ((timerLeft > 0 && timerLeft < 300) ? '계속' : '5분 시작');
+    }
+    if (cap) {
+      if (timerLeft <= 0) { cap.textContent = '5분을 다 채웠어요 · 미션 완료를 눌러 스탬프를 찍어요'; }
+      else if (timerLeft >= 300) { cap.textContent = '5분 동안 천천히, 숨을 고르며'; }
+      else if (m >= 1) { cap.textContent = '남은 ' + m + '분은 창밖을 봐도 좋아요'; }
+      else { cap.textContent = '이제 1분도 채 남지 않았어요'; }
+    }
   }
   function stopTimer(){
     if (timerId) { window.clearInterval(timerId); timerId = null; }
-    var b = $('forestTimerBtn');
-    if (b) { b.textContent = timerLeft > 0 && timerLeft < 300 ? '계속' : '5분 시작'; }
+    paintTimer();
   }
   function startTimer(){
+    if (forestDone()) { paintTimer(); return; }
     if (timerId) {
       window.clearInterval(timerId);
       timerId = null;
-      $('forestTimerBtn').textContent = '계속';
+      paintTimer();
       return;
     }
-    if (timerLeft <= 0) { timerLeft = 300; paintTimer(); }
-    $('forestTimerBtn').textContent = '잠깐 멈춤';
+    if (timerLeft <= 0) { timerLeft = 300; }
     timerId = window.setInterval(function(){
       timerLeft -= 1;
       if (timerLeft <= 0) {
         timerLeft = 0;
-        paintTimer();
         window.clearInterval(timerId);
         timerId = null;
-        $('forestTimerBtn').textContent = '5분 시작';
+        paintTimer();
         toast('5분을 다 채웠어요. 정말 잘했어요.');
         return;
       }
       paintTimer();
     }, 1000);
+    paintTimer();
   }
   function paintForest(){
     var steps = document.querySelectorAll('#sheetForest .step[data-step]');
@@ -3105,9 +3582,9 @@ select{
     }
     if (!owned) {
       state.gifts.push({
-        id: 'artdate', icon: '🎒', title: '나홀로 소풍가',
+        id: 'artdate', icon: '🎒', title: '나홀로 소풍 배지',
         desc: '이번 주 나홀로 소풍 — ' + mission + '. 내 방 선반에 놓인 기념품이에요.',
-        short: '나홀로 소풍가', day: todayKey()
+        short: '나홀로 소풍', day: todayKey()
       });
     }
     save();
@@ -3449,6 +3926,35 @@ select{
 
     $('saveMorningBtn').addEventListener('click', saveMorning);
     $('morningTimerBtn').addEventListener('click', toggleMorningTimer);
+    $('morningInput').addEventListener('input', function(){
+      state.morningDraft = this.value;
+      save();
+    });
+
+    /* 오늘의 쉼표 · 타이핑 없이도 남는 기록 */
+    var toneBtns = document.querySelectorAll('#toneRow .tone-chip');
+    for (var tb = 0; tb < toneBtns.length; tb++) {
+      toneBtns[tb].addEventListener('click', function(){
+        toggleTone(this.getAttribute('data-tone'));
+      });
+    }
+    $('quickLineBtn').addEventListener('click', saveQuickLine);
+    $('quickLine').addEventListener('keydown', function(ev){
+      if (ev.key === 'Enter') { ev.preventDefault(); saveQuickLine(); }
+    });
+    $('quickLine').addEventListener('input', function(){
+      state.quickDraft = this.value;
+      save();
+    });
+
+    /* 나의 숲 노트 */
+    $('noteOpenBtn').addEventListener('click', function(){
+      paintNote();
+      openSheet('sheetNote');
+    });
+    $('noteCloseBtn').addEventListener('click', function(){ closeSheet($('sheetNote')); });
+    $('noteKeepBtn').addEventListener('click', keepNote);
+    $('noteLessonBtn').addEventListener('click', noteToLesson);
     $('drawerToggle').addEventListener('click', function(){
       var list = $('drawerList');
       var willOpen = list.hidden;
@@ -3522,8 +4028,9 @@ select{
         renderedHand = '';
         lastJourney = -1;
         timerLeft = 300;
-        morningLeft = 180;
+        morningLeft = MORNING_FULL;
         $('morningInput').value = '';
+        $('quickLine').value = '';
         $('dateInput').value = '';
         $('drawerList').hidden = true;
         $('drawerToggle').textContent = '열어 보기';
@@ -4005,6 +4512,7 @@ select{
   function resetDaily(){
     state.day = todayKey();
     state.mood = null;
+    state.tones = [];
     state.quests = { water: false, manual: false };
     state.weather = null;
     state.steps = { f1: false, f2: false, f3: false };
@@ -4023,6 +4531,8 @@ select{
   paintAll();
   bind();
   paintAll();
+  restoreMorningDraft();
+  restoreMorningTimer();
 
   /* 날짜는 기기 시계로 매번 다시 계산합니다 (자정 넘김·탭 복귀 포함) */
   var dayStamp = todayKey();
