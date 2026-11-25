@@ -239,7 +239,7 @@ h2{margin:0;font-size:21px;line-height:1.35;letter-spacing:-.02em;font-weight:80
 .note-piece i{font-style:normal;font-size:17px;line-height:1.35}
 .note-piece div{min-width:0}
 .note-piece b{display:block;font-size:11.5px;font-weight:800;color:#A08A62;letter-spacing:.02em}
-.note-piece span{display:block;font-size:14px;font-weight:600;color:#443C2F;line-height:1.55;word-break:break-word}
+.note-piece div > span{display:block;font-size:14px;font-weight:600;color:#443C2F;line-height:1.55;word-break:break-word}
 .note-piece.sample{border-style:dashed;opacity:.82}
 .note-piece-tag{display:inline-block;font-size:10px;font-weight:800;color:#B08A4A;background:#F7EBD6;border-radius:999px;padding:2px 6px;margin-left:5px;vertical-align:1px}
 .note-sign{margin:13px 0 0;text-align:right;font-size:12.5px;font-weight:800;color:#9A7B45}
@@ -1951,10 +1951,10 @@ select{
           <div class="note-pieces" id="notePieces"></div>
           <p class="note-sign">— 두 번째 숲, 나의 기록</p>
         </article>
-        <p class="foot-note" style="margin:2px 4px 14px">이 노트는 이 기기에만 저장되고, 아무에게도 공개되지 않아요.</p>
         <button class="btn btn-primary" type="button" id="noteLessonBtn">🧶 이 기록으로 미니 수업 제안하기</button>
         <button class="btn btn-ghost" type="button" id="noteKeepBtn" style="margin-top:9px">📋 내 기록 복사해서 간직하기</button>
         <p class="note-keep-note" id="noteKeepDone" hidden></p>
+        <p class="foot-note" style="margin:14px 4px 10px">이 노트는 이 기기에만 저장되고, 아무에게도 공개되지 않아요.</p>
       </div>
       <div class="sheet-foot">
         <button class="btn btn-primary" type="button" id="noteCloseBtn">닫기</button>
