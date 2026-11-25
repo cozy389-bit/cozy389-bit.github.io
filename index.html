@@ -116,6 +116,32 @@ input,textarea,select{font-family:inherit;font-size:17px;color:var(--ink)}
 h1{margin:2px 0 4px;font-size:25px;line-height:1.32;letter-spacing:-.03em;font-weight:800}
 h2{margin:0;font-size:21px;line-height:1.35;letter-spacing:-.02em;font-weight:800}
 .lead{margin:0 0 16px;font-size:16px;color:var(--ink-soft)}
+
+/* ── 공용 체험: 인사 이름 · 체험 안내 ───── */
+.greet-row{display:flex;align-items:flex-start;gap:8px}
+.greet-row h1{flex:1 1 auto;min-width:0}
+.name-btn{
+  flex:0 0 auto;margin-top:5px;width:38px;height:38px;border-radius:13px;
+  display:grid;place-items:center;background:#fff;border:1px solid var(--line);
+  color:#7C8A82;box-shadow:0 2px 8px rgba(46,94,78,.05);
+}
+.name-btn svg{width:17px;height:17px}
+.name-btn[aria-expanded="true"]{background:var(--green-soft);color:var(--green-dark);border-color:#CFE3D6}
+.name-editor{
+  margin:10px 0 0;padding:14px;border-radius:18px;background:#fff;
+  border:1.5px solid #CFE3D6;box-shadow:0 8px 20px rgba(46,94,78,.08);
+}
+.name-editor label{display:block;font-size:13.5px;font-weight:800;color:var(--green-dark);margin-bottom:9px}
+.name-row{display:flex;gap:8px}
+.name-row input{flex:1 1 auto;min-width:0;min-height:50px}
+.name-row .btn{width:auto;flex:0 0 auto;min-height:50px;padding:0 18px;font-size:15.5px;border-radius:14px}
+.name-hint{margin:9px 0 0;font-size:12.5px;line-height:1.5;color:#9AA39D}
+.demo-badge{
+  display:inline-flex;align-items:center;gap:6px;margin:0 0 14px;padding:6px 11px;
+  border-radius:999px;background:var(--amber-soft);max-width:100%;
+  font-size:12.5px;font-weight:700;line-height:1.45;color:#A2703A;
+}
+.demo-badge svg{width:14px;height:14px;flex:0 0 auto}
 .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:12px}
 .hint{font-size:14px;color:var(--muted);font-weight:600;white-space:nowrap}
 .card{
@@ -739,7 +765,27 @@ select{
 
     <!-- ═══ 화면 1 · 내 방 ═══ -->
     <section class="screen" id="screen-home" aria-labelledby="homeTitle">
-      <h1 id="homeTitle">좋은 아침이에요, 상희님</h1>
+      <div class="greet-row">
+        <h1 id="homeTitle">좋은 아침이에요, 탐험가님</h1>
+        <button class="name-btn" id="nameBtn" type="button" aria-expanded="false" aria-controls="nameEditor" aria-label="인사에 쓸 이름 바꾸기" title="이름 바꾸기">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20h4.2L19 9.2a2.1 2.1 0 0 0 0-3l-1.2-1.2a2.1 2.1 0 0 0-3 0L4 15.8V20Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M13.6 6.6 17.4 10.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <form class="name-editor" id="nameEditor" hidden>
+        <label for="nameInput">이 시제품에서 불릴 이름</label>
+        <div class="name-row">
+          <input id="nameInput" type="text" maxlength="12" placeholder="예) 탐험가" autocomplete="nickname" aria-label="인사에 쓸 이름">
+          <button class="btn btn-primary" id="nameSave" type="submit">저장</button>
+        </div>
+        <p class="name-hint">이 기기에만 저장돼요 · 비워 두면 ‘탐험가님’으로 불러요</p>
+      </form>
+
+      <p class="demo-badge">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#C08A45" stroke-width="1.8"/><path d="M12 10.6v5.2" stroke="#C08A45" stroke-width="1.9" stroke-linecap="round"/><circle cx="12" cy="7.7" r="1.05" fill="#C08A45"/></svg>
+        <span>체험용 시제품 · 기록은 현재 기기에만 저장됩니다</span>
+      </p>
+
       <p class="lead" id="homeLead">오늘도 여기, 내 방에서 시작해요.</p>
 
       <figure class="hero">
@@ -1336,6 +1382,7 @@ select{
   function defaults(){
     return {
       day: todayKey(),
+      userName: '탐험가',
       seeds: 120,
       mood: null,
       quests: { water: false, manual: false },
@@ -1395,6 +1442,10 @@ select{
 
   /* ── 작은 도구들 ─────────────────────── */
   function $(id){ return document.getElementById(id); }
+  function displayName(){
+    var n = (state && typeof state.userName === 'string') ? state.userName.trim() : '';
+    return n || '탐험가';
+  }
   function esc(s){
     return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){
       return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
@@ -1472,7 +1523,7 @@ select{
     var h = d.getHours();
     var hello = h < 11 ? '좋은 아침이에요' : (h < 17 ? '좋은 오후예요' : '좋은 저녁이에요');
     var light = h < 11 ? '아침 햇살' : (h < 17 ? '오후 햇살' : '저녁 노을');
-    $('homeTitle').textContent = hello + ', 상희님';
+    $('homeTitle').textContent = hello + ', ' + displayName() + '님';
     $('todayChip').textContent = (d.getMonth() + 1) + '월 ' + d.getDate() + '일 ' + WEEK[d.getDay()] + '요일 · ' + light;
   }
 
@@ -2199,9 +2250,15 @@ select{
       if (chip) { chip.hidden = true; }
       return;
     }
-    $('letterBody').textContent = L.body;
+    $('letterBody').textContent = letterText(L.body);
     card.hidden = false;
     chip.hidden = false;
+  }
+  function letterText(body){
+    var t = String(body == null ? '' : body);
+    if (t.indexOf('{이름}') !== -1) { return t.replace(/\{이름\}/g, displayName()); }
+    if (t.indexOf('상희님') !== -1) { return t.replace(/상희님/g, displayName()); }
+    return t;
   }
   function letterFor(d, a){
     var isTale = String(d.s).indexOf('민담') === 0;
@@ -2209,7 +2266,7 @@ select{
     var a2 = (a.a2 || '').trim();
     var a3 = (a.a3 || '').trim();
     var lines = [];
-    lines.push('상희님,');
+    lines.push('{이름}님,');
     lines.push('');
     if (a1) {
       lines.push('서재에서 ‘' + d.t + '’ 카드를 뒤집고, 첫 줄에 ‘' + a1 + '’라고 적어 주셨어요.');
@@ -2223,7 +2280,7 @@ select{
       lines.push('둘째 줄에 적은 ‘' + a2 + '’도 함께 읽었습니다. 그때의 마음이 지금의 자리까지 이어져 온 거겠지요.');
     }
     if (a3) {
-      lines.push('지금의 나에게 건넨 ‘' + a3 + '’ — 이 한마디는 오늘의 상희님을 꽤 오래 지켜 줄 거예요.');
+      lines.push('지금의 나에게 건넨 ‘' + a3 + '’ — 이 한마디는 오늘의 {이름}님을 꽤 오래 지켜 줄 거예요.');
     } else {
       lines.push('마지막 줄은 비워 두셨지만 괜찮아요. 카드를 뒤집은 것만으로 오늘의 몫은 다 했습니다.');
     }
@@ -2357,9 +2414,42 @@ select{
       }
     });
 
+    /* ── 인사 이름 바꾸기 (체험자마다 자기 이름으로) ── */
+    $('nameBtn').addEventListener('click', function(){
+      var ed = $('nameEditor');
+      var willOpen = ed.hidden;
+      ed.hidden = !willOpen;
+      $('nameBtn').setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      if (willOpen) {
+        $('nameInput').value = (state.userName && state.userName !== '탐험가') ? state.userName : '';
+        $('nameInput').focus();
+      }
+    });
+    $('nameInput').addEventListener('keydown', function(ev){
+      if (ev.key === 'Escape') {
+        $('nameEditor').hidden = true;
+        $('nameBtn').setAttribute('aria-expanded', 'false');
+        $('nameBtn').focus();
+      }
+    });
+    $('nameEditor').addEventListener('submit', function(ev){
+      ev.preventDefault();
+      var v = String($('nameInput').value || '').replace(/\s+/g, ' ').trim().replace(/님$/, '').trim();
+      if (v.length > 12) { v = v.slice(0, 12); }
+      state.userName = v || '탐험가';
+      save();
+      $('nameEditor').hidden = true;
+      $('nameBtn').setAttribute('aria-expanded', 'false');
+      paintDate();
+      paintLetter();
+      toast(state.userName === '탐험가' ? '‘탐험가님’으로 불러 드릴게요' : '이제 ‘' + state.userName + '님’으로 불러 드릴게요');
+    });
+
     $('resetBtn').addEventListener('click', function(){
       if (window.confirm('시제품을 처음 상태로 되돌릴까요?\n(씨앗 120, 적은 기록과 카드가 모두 지워집니다)')) {
+        var keepName = state.userName;
         state = defaults();
+        if (keepName) { state.userName = keepName; }
         save();
         stopBreath();
         stopTimer();
