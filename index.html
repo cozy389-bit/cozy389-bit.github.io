@@ -432,6 +432,67 @@ textarea:focus,input:focus,select:focus{border-color:#9CC4AE;background:#fff;out
 .heart[aria-pressed="true"] svg{fill:currentColor}
 .add-card{margin-top:2px}
 
+/* ── 광장 하위 탭 ────────────────────────── */
+.plaza-tabs{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin:0 0 16px;padding:5px;
+  border-radius:999px;background:#F0ECE3;border:1px solid #E7E1D5;
+}
+.plaza-tabs button{
+  min-height:44px;border-radius:999px;display:flex;align-items:center;justify-content:center;
+  font-size:clamp(12.5px,3.6vw,14px);font-weight:800;letter-spacing:-.02em;color:#6F7A73;
+  white-space:nowrap;transition:background .18s ease,color .18s ease,box-shadow .18s ease;
+}
+.plaza-tabs button[aria-selected="true"]{background:#fff;color:var(--green-dark);box-shadow:0 2px 8px rgba(46,94,78,.14)}
+
+/* ── 모닥불 온기 살롱 ───────────────────── */
+.rule-banner{
+  display:flex;align-items:flex-start;gap:9px;padding:12px 14px;border-radius:16px;margin:0 0 16px;
+  background:linear-gradient(160deg,#FFF6E9,#FBF1E1);border:1px solid #F0DDBE;
+  font-size:13.5px;font-weight:700;line-height:1.5;color:#8A5A20;
+}
+.rule-banner .ico{font-size:16px;line-height:1.35;flex:0 0 auto}
+.post{
+  background:var(--card);border:1px solid rgba(239,233,223,.9);border-radius:18px;
+  padding:14px 15px 13px;margin-bottom:11px;box-shadow:var(--shadow);
+}
+.post.mine{border-color:#B4D2C1;background:linear-gradient(180deg,#F7FBF8,#fff)}
+.post-top{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.post-who{font-size:14px;font-weight:800;letter-spacing:-.01em}
+.post-q{font-size:11.5px;font-weight:800;color:var(--amber);background:var(--amber-soft);padding:2px 8px;border-radius:8px}
+.post-ask{font-size:11.5px;font-weight:800;color:var(--blue);background:var(--blue-soft);padding:2px 8px;border-radius:8px}
+.post-body{margin:0 0 12px;font-size:15px;line-height:1.62;color:var(--ink-soft);white-space:pre-line}
+.stamp-row{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.stamp-btn{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  min-height:60px;padding:6px 2px;border-radius:14px;border:1.5px solid var(--line);
+  background:#fff;font-size:12px;font-weight:800;line-height:1.3;color:var(--ink-soft);
+}
+.stamp-btn .se{font-size:17px;line-height:1}
+.stamp-btn b{font-variant-numeric:tabular-nums}
+.stamp-btn[aria-pressed="true"]{background:var(--terra-soft);border-color:#EFC9B9;color:var(--terra);box-shadow:0 2px 8px rgba(196,112,79,.12)}
+
+/* ── 품앗이 교환소 ──────────────────────── */
+.safety-badge{
+  display:flex;align-items:flex-start;gap:9px;padding:12px 14px;border-radius:16px;margin:0 0 16px;
+  background:#EDF3F7;border:1px solid #D7E3EC;font-size:13px;font-weight:700;line-height:1.5;color:#3C5674;
+}
+.safety-badge .ico{font-size:15px;line-height:1.4;flex:0 0 auto}
+.ex-card{
+  background:var(--card);border:1px solid rgba(239,233,223,.9);border-radius:18px;
+  padding:14px 15px 13px;margin-bottom:11px;box-shadow:var(--shadow);
+}
+.ex-card.mine{border-color:#B4D2C1;background:linear-gradient(180deg,#F7FBF8,#fff)}
+.ex-pair{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+.ex-line{display:flex;align-items:flex-start;gap:7px;font-size:14.5px;font-weight:800;letter-spacing:-.01em;line-height:1.45}
+.ex-line .tag{flex:0 0 auto;font-size:11px;font-weight:800;padding:3px 7px;border-radius:7px;margin-top:1px}
+.ex-line.give .tag{background:var(--green-soft);color:var(--green-dark)}
+.ex-line.want .tag{background:var(--terra-soft);color:var(--terra)}
+.ex-meta{display:block;margin:0 0 10px;font-size:12.5px;font-weight:700;color:var(--muted)}
+.ex-btn{min-height:46px}
+.ex-state{margin:0;padding:11px 12px;border-radius:12px;background:var(--amber-soft);color:#8A5A20;font-size:13.5px;font-weight:800;text-align:center;line-height:1.4}
+.seg.seg-2{grid-template-columns:repeat(2,1fr)}
+.form-hint{margin:7px 2px 0;font-size:12.5px;line-height:1.5;color:var(--muted);font-weight:600}
+
 /* ── overlays / sheets ───────────────────── */
 .overlay{
   position:absolute;inset:0;z-index:60;display:flex;flex-direction:column;justify-content:flex-end;
@@ -1129,30 +1190,75 @@ select{
       <h1 id="plazaTitle">동네 광장</h1>
       <p class="lead">활력의 숲 3조 · 여섯 명의 원정대</p>
 
-      <div class="card">
-        <div class="crew-head">
-          <h2>활력의 숲 3조</h2>
-          <span class="crew-count" id="crewCount">6명 함께</span>
+      <div class="plaza-tabs" role="tablist" aria-label="동네 광장 안내판">
+        <button type="button" role="tab" id="ptabCrew" data-ptab="crew" aria-selected="true" aria-controls="plazaCrew">조원 응원</button>
+        <button type="button" role="tab" id="ptabSalon" data-ptab="salon" aria-selected="false" aria-controls="plazaSalon">온기 살롱</button>
+        <button type="button" role="tab" id="ptabPumasi" data-ptab="pumasi" aria-selected="false" aria-controls="plazaPumasi">품앗이 교환소</button>
+      </div>
+
+      <!-- ── 1. 조원 응원 & 경험 카드 ── -->
+      <div id="plazaCrew" role="tabpanel" aria-labelledby="ptabCrew">
+        <div class="card">
+          <div class="crew-head">
+            <h2>활력의 숲 3조</h2>
+            <span class="crew-count" id="crewCount">6명 함께</span>
+          </div>
+          <div class="avatar-row" id="avatarRow"></div>
+          <button class="btn btn-soft cheer-btn" id="cheerBtn" type="button">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" aria-hidden="true"><path d="M12 20s-7-4.3-7-9.2A4 4 0 0 1 12 8a4 4 0 0 1 7 2.8C19 15.7 12 20 12 20Z" fill="#2E5E4E"/></svg>
+            <span id="cheerBtnText">응원 스탬프 찍기</span>
+          </button>
+          <div class="cheer-meta"><span id="cheerToday">오늘 0명 응원했어요</span><span id="cheerTotal">함께 12번</span></div>
         </div>
-        <div class="avatar-row" id="avatarRow"></div>
-        <button class="btn btn-soft cheer-btn" id="cheerBtn" type="button">
-          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" aria-hidden="true"><path d="M12 20s-7-4.3-7-9.2A4 4 0 0 1 12 8a4 4 0 0 1 7 2.8C19 15.7 12 20 12 20Z" fill="#2E5E4E"/></svg>
-          <span id="cheerBtnText">응원 스탬프 찍기</span>
+
+        <div class="section-head" style="margin-top:20px">
+          <h2>인생 경험 카드</h2>
+          <span class="hint">60대 44%가 고른 자리</span>
+        </div>
+        <div id="cardList"></div>
+
+        <button class="btn btn-primary add-card" id="addCardBtn" type="button">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+          내 경험 카드 올리기
         </button>
-        <div class="cheer-meta"><span id="cheerToday">오늘 0명 응원했어요</span><span id="cheerTotal">함께 12번</span></div>
+        <p class="foot-note">‘궁금해요’는 말 대신 누르는 인사예요.<br>올린 카드는 이 기기의 이 브라우저에만 저장돼요.</p>
       </div>
 
-      <div class="section-head" style="margin-top:20px">
-        <h2>인생 경험 카드</h2>
-        <span class="hint">60대 44%가 고른 자리</span>
+      <!-- ── 2. 모닥불 온기 살롱 ── -->
+      <div id="plazaSalon" role="tabpanel" aria-labelledby="ptabSalon" hidden>
+        <div class="rule-banner">
+          <span class="ico" aria-hidden="true">🔥</span>
+          <span>훈수·비교·영업 없이, 온기 스탬프로만 마음을 건네는 방입니다.</span>
+        </div>
+        <div class="section-head">
+          <h2>모닥불 온기 살롱</h2>
+          <span class="hint" id="salonCount">글 2개</span>
+        </div>
+        <div id="salonList"></div>
+        <button class="btn btn-primary add-card" id="addSalonBtn" type="button">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+          내 글 올리기 (+5 씨앗)
+        </button>
+        <p class="foot-note">긴 댓글 대신 스탬프 세 개로 마음을 건네요.<br>적은 글은 이 기기의 이 브라우저에만 저장돼요.</p>
       </div>
-      <div id="cardList"></div>
 
-      <button class="btn btn-primary add-card" id="addCardBtn" type="button">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
-        내 경험 카드 올리기
-      </button>
-      <p class="foot-note">‘궁금해요’는 말 대신 누르는 인사예요.<br>올린 카드는 이 기기의 이 브라우저에만 저장돼요.</p>
+      <!-- ── 3. 품앗이 교환소 ── -->
+      <div id="plazaPumasi" role="tabpanel" aria-labelledby="ptabPumasi" hidden>
+        <div class="safety-badge">
+          <span class="ico" aria-hidden="true">🛡️</span>
+          <span>기본 퀘스트 1주 이상 완주자만 열 수 있어요 · 현금/대리결제·고위험 의료행위 제외</span>
+        </div>
+        <div class="section-head">
+          <h2>품앗이 교환소</h2>
+          <span class="hint">시간·재능 물물교환</span>
+        </div>
+        <div id="pumasiList"></div>
+        <button class="btn btn-primary add-card" id="addPumasiBtn" type="button">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+          내 품앗이 올리기
+        </button>
+        <p class="foot-note">돈은 오가지 않아요. 서로의 시간과 손길만 바꿔요.<br>올린 품앗이는 이 기기의 이 브라우저에만 저장돼요.</p>
+      </div>
     </section>
 
   </main>
@@ -1472,6 +1578,75 @@ select{
     </div>
   </div>
 
+  <!-- ═══ 온기 살롱에 글 올리기 ═══ -->
+  <div class="overlay" id="sheetSalon" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="salonFormTitle">
+      <div class="sheet-grab" aria-hidden="true"></div>
+      <div class="sheet-head">
+        <h2 id="salonFormTitle">온기 살롱에 글 올리기</h2>
+        <p>잘 쓴 글이 아니어도 괜찮아요. 오늘 마음에 남은 것 한두 줄이면 충분해요.</p>
+        <button class="sheet-close" type="button" data-close aria-label="닫기">
+          <svg viewBox="0 0 24 24" fill="none"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="sheet-body">
+        <div class="field">
+          <label for="salonQ">가이드 질문</label>
+          <select id="salonQ">
+            <option>요즘 마음 쓰이는 일</option>
+            <option>오늘 나를 웃게 한 일</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="salonBody">오늘의 온기</label>
+          <textarea id="salonBody" rows="4" maxlength="200" placeholder="예) 오늘 아침 운동화 끈을 매는데, 예전보다 손이 느려진 걸 느꼈어요. 그래도 천천히 매면 된다는 생각이 들었습니다."></textarea>
+        </div>
+        <div class="field" style="margin-bottom:4px">
+          <label>원하는 반응</label>
+          <div class="seg seg-2" id="salonAsk" role="group" aria-label="원하는 반응">
+            <button type="button" data-ask="토닥임 받기" aria-pressed="true">토닥임 받기</button>
+            <button type="button" data-ask="그냥 들어주기" aria-pressed="false">그냥 들어주기</button>
+          </div>
+          <p class="form-hint">‘그냥 들어주기’를 고르면 조언 없이 스탬프만 받아요.</p>
+        </div>
+      </div>
+      <div class="sheet-foot">
+        <button class="btn btn-primary" type="button" id="saveSalonBtn" disabled>한 줄 적으면 올릴 수 있어요</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 내 품앗이 올리기 ═══ -->
+  <div class="overlay" id="sheetPumasi" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="pumasiFormTitle">
+      <div class="sheet-grab" aria-hidden="true"></div>
+      <div class="sheet-head">
+        <h2 id="pumasiFormTitle">내 품앗이 올리기</h2>
+        <p>돈 대신 시간과 손길을 바꿔요. 현금·대리결제·의료행위는 올릴 수 없어요.</p>
+        <button class="sheet-close" type="button" data-close aria-label="닫기">
+          <svg viewBox="0 0 24 24" fill="none"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="sheet-body">
+        <div class="field">
+          <label for="pumasiGive">내가 줄 수 있는 것</label>
+          <input type="text" id="pumasiGive" maxlength="40" placeholder="예) 김장김치 5kg, 스마트폰 사진 정리 1시간">
+        </div>
+        <div class="field">
+          <label for="pumasiWant">원하는 도움</label>
+          <input type="text" id="pumasiWant" maxlength="40" placeholder="예) 병원 동행 3시간, 전등 갈아 끼우기">
+        </div>
+        <div class="field" style="margin-bottom:4px">
+          <label for="pumasiMeta">동네·방식</label>
+          <input type="text" id="pumasiMeta" maxlength="30" placeholder="예) 서대문구 · 집에서 만나요">
+        </div>
+      </div>
+      <div class="sheet-foot">
+        <button class="btn btn-primary" type="button" id="savePumasiBtn" disabled>줄 것과 받을 것을 적어 주세요</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ═══ 보물상자 ═══ -->
   <div class="overlay" id="sheetChest" hidden>
     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="chestSheetTitle">
@@ -1622,6 +1797,8 @@ select{
       liked: {},
       likes: { lettuce: 12, budget: 8 },
       myCards: [],
+      salon: { posts: [], stamps: {}, rewarded: false },
+      pumasi: { mine: [], proposed: {} },
       chest: { openedDay: null, sample: false, reward: null },
       gifts: [],
       hand: [],
@@ -2249,6 +2426,9 @@ select{
       $('cheerBtnText').textContent = '응원 스탬프 찍기 (+5 씨앗)';
     }
     paintCards();
+    paintPlazaTabs();
+    paintSalon();
+    paintPumasi();
   }
   function paintCards(){
     var list = $('cardList');
@@ -2285,6 +2465,153 @@ select{
         '<span class="hint">말 대신 누르는 인사</span></div></div></article>';
     }
     list.innerHTML = html;
+  }
+
+  /* ── 광장 하위 탭 ────────────────────── */
+  var plazaTab = 'crew';
+  var PLAZA_PANELS = { crew: 'plazaCrew', salon: 'plazaSalon', pumasi: 'plazaPumasi' };
+  function paintPlazaTabs(){
+    var btns = document.querySelectorAll('.plaza-tabs [data-ptab]');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].setAttribute('aria-selected', btns[i].getAttribute('data-ptab') === plazaTab ? 'true' : 'false');
+    }
+    for (var k in PLAZA_PANELS) {
+      if (!Object.prototype.hasOwnProperty.call(PLAZA_PANELS, k)) { continue; }
+      var p = $(PLAZA_PANELS[k]);
+      if (p) { p.hidden = k !== plazaTab; }
+    }
+  }
+  function setPlazaTab(name){
+    if (!Object.prototype.hasOwnProperty.call(PLAZA_PANELS, name)) { return; }
+    plazaTab = name;
+    paintPlazaTabs();
+    $('screens').scrollTop = 0;
+  }
+
+  /* ── 모닥불 온기 살롱 ─────────────────── */
+  var SALON_STAMPS = [
+    { key: 'pat', emo: '🤍', label: '토닥토닥' },
+    { key: 'same', emo: '🌿', label: '저도 그래요' },
+    { key: 'cheer', emo: '✨', label: '응원해요' }
+  ];
+  var SALON_SAMPLES = [
+    {
+      id: 'salon1', author: '김영숙 님', q: '요즘 마음 쓰이는 일', ask: '토닥임 받기',
+      body: '딸이 이사 간 뒤로 저녁이 길어졌어요. 밥상은 아직 두 사람 몫으로 차리게 됩니다. 그래도 오늘은 창가에 앉아 국 한 그릇을 끝까지 먹었어요.',
+      base: { pat: 4, same: 6, cheer: 3 }
+    },
+    {
+      id: 'salon2', author: '박철수 님', q: '오늘 나를 웃게 한 일', ask: '그냥 들어주기',
+      body: '아침 산책길에서 이웃집 강아지가 저를 알아보고 달려왔습니다. 이름을 부르지 않아도 알아본다는 게 그렇게 반가울 줄 물랐어요.',
+      base: { pat: 2, same: 3, cheer: 5 }
+    }
+  ];
+  function salonPosts(){
+    var out = [];
+    var mine = (state.salon && state.salon.posts) || [];
+    for (var i = 0; i < mine.length; i++) {
+      out.push({ id: mine[i].id, author: '나', q: mine[i].q, ask: mine[i].ask, body: mine[i].body, mine: true });
+    }
+    for (var j = 0; j < SALON_SAMPLES.length; j++) { out.push(SALON_SAMPLES[j]); }
+    return out;
+  }
+  function paintSalon(){
+    var list = $('salonList');
+    if (!list) { return; }
+    var posts = salonPosts();
+    var stamps = (state.salon && state.salon.stamps) || {};
+    var html = '';
+    for (var i = 0; i < posts.length; i++) {
+      var p = posts[i];
+      html += '<article class="post' + (p.mine ? ' mine' : '') + '">' +
+        '<div class="post-top"><span class="post-who">' + esc(p.author) + '</span>' +
+        '<span class="post-q">' + esc(p.q) + '</span>' +
+        '<span class="post-ask">' + esc(p.ask) + '</span></div>' +
+        '<p class="post-body">' + esc(p.body) + '</p>' +
+        '<div class="stamp-row">';
+      for (var s = 0; s < SALON_STAMPS.length; s++) {
+        var st = SALON_STAMPS[s];
+        var mk = p.id + ':' + st.key;
+        var on = !!stamps[mk];
+        var n = ((p.base && p.base[st.key]) || 0) + (on ? 1 : 0);
+        html += '<button class="stamp-btn" type="button" data-salstamp="' + esc(mk) + '" aria-pressed="' + (on ? 'true' : 'false') + '" aria-label="' + esc(st.label) + ' ' + n + '">' +
+          '<span class="se" aria-hidden="true">' + st.emo + '</span>' +
+          '<span>' + esc(st.label) + ' <b data-salcount="' + esc(mk) + '">' + n + '</b></span></button>';
+      }
+      html += '</div></article>';
+    }
+    list.innerHTML = html;
+    $('salonCount').textContent = '글 ' + posts.length + '개';
+  }
+  var salonAsk = '토닥임 받기';
+  function paintSalonAsk(){
+    var btns = document.querySelectorAll('#salonAsk button');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].setAttribute('aria-pressed', btns[i].getAttribute('data-ask') === salonAsk ? 'true' : 'false');
+    }
+  }
+  function paintSalonForm(){
+    var body = $('salonBody').value.trim();
+    var b = $('saveSalonBtn');
+    if (body) {
+      b.disabled = false;
+      b.textContent = '온기 살롱에 올리기';
+    } else {
+      b.disabled = true;
+      b.textContent = '한 줄 적으면 올릴 수 있어요';
+    }
+  }
+
+  /* ── 품앗이 교환소 ────────────────────── */
+  var PUMASI_SAMPLES = [
+    { id: 'kimchi', give: '🥬 김장김치 5kg 드려요', want: '🏥 병원 동행 3시간 구해요', meta: '서대문구 · 1주 완주자' },
+    { id: 'photo', give: '📱 스마트폰 사진 정리 1시간', want: '🪴 화분 분갈이·가지치기', meta: '마포구 · 1주 완주자' },
+    { id: 'banchan', give: '🍲 집밥 밑반찬 3종', want: '💡 전등·문고리 손보기', meta: '강남구 · 1주 완주자' }
+  ];
+  function paintPumasi(){
+    var list = $('pumasiList');
+    if (!list) { return; }
+    var mine = (state.pumasi && state.pumasi.mine) || [];
+    var proposed = (state.pumasi && state.pumasi.proposed) || {};
+    var html = '';
+    var i;
+    for (i = 0; i < mine.length; i++) {
+      var m = mine[i];
+      html += '<article class="ex-card mine">' +
+        '<div class="ex-pair">' +
+        '<div class="ex-line give"><span class="tag">줄 것</span><span>' + esc(m.give) + '</span></div>' +
+        '<div class="ex-line want"><span class="tag">받을 것</span><span>' + esc(m.want) + '</span></div>' +
+        '</div>' +
+        '<span class="ex-meta">' + esc(m.meta) + ' · 내가 올린 품앗이</span>' +
+        '<p class="ex-state">상대가 제안하면 이 자리에서 알려 드려요</p></article>';
+    }
+    for (i = 0; i < PUMASI_SAMPLES.length; i++) {
+      var p = PUMASI_SAMPLES[i];
+      var done = !!proposed[p.id];
+      html += '<article class="ex-card">' +
+        '<div class="ex-pair">' +
+        '<div class="ex-line give"><span class="tag">줄 것</span><span>' + esc(p.give) + '</span></div>' +
+        '<div class="ex-line want"><span class="tag">받을 것</span><span>' + esc(p.want) + '</span></div>' +
+        '</div>' +
+        '<span class="ex-meta">' + esc(p.meta) + '</span>' +
+        (done
+          ? '<p class="ex-state">✓ 제안 완료! 상대방과 연결 대기 중</p>'
+          : '<button class="btn btn-soft btn-sm ex-btn" type="button" data-propose="' + esc(p.id) + '">교환 제안해 보기</button>') +
+        '</article>';
+    }
+    list.innerHTML = html;
+  }
+  function paintPumasiForm(){
+    var give = $('pumasiGive').value.trim();
+    var want = $('pumasiWant').value.trim();
+    var b = $('savePumasiBtn');
+    if (give && want) {
+      b.disabled = false;
+      b.textContent = '교환소에 올리기';
+    } else {
+      b.disabled = true;
+      b.textContent = '줄 것과 받을 것을 적어 주세요';
+    }
   }
 
   /* ── 시트 열고 닫기 ─────────────────── */
@@ -3255,6 +3582,100 @@ select{
       switchTab('plaza');
       toast('내 경험 카드가 광장에 올라갔어요');
     });
+
+    /* 광장 · 하위 탭 */
+    var ptabs = document.querySelectorAll('.plaza-tabs [data-ptab]');
+    for (var pt = 0; pt < ptabs.length; pt++) {
+      ptabs[pt].addEventListener('click', function(){
+        setPlazaTab(this.getAttribute('data-ptab'));
+      });
+    }
+
+    /* 온기 살롱 · 온기 스탬프 */
+    document.addEventListener('click', function(e){
+      var btn = e.target.closest ? e.target.closest('[data-salstamp]') : null;
+      if (!btn) { return; }
+      var key = btn.getAttribute('data-salstamp');
+      if (!state.salon.stamps) { state.salon.stamps = {}; }
+      var on = !state.salon.stamps[key];
+      state.salon.stamps[key] = on;
+      save();
+      paintSalon();
+      if (on) { toast('온기를 건넸어요'); }
+    });
+
+    /* 온기 살롱 · 글 올리기 */
+    $('addSalonBtn').addEventListener('click', function(){
+      $('salonQ').selectedIndex = 0;
+      $('salonBody').value = '';
+      salonAsk = '토닥임 받기';
+      paintSalonAsk();
+      paintSalonForm();
+      openSheet('sheetSalon');
+      window.setTimeout(function(){ $('salonBody').focus(); }, 320);
+    });
+    $('salonBody').addEventListener('input', paintSalonForm);
+    var askBtns = document.querySelectorAll('#salonAsk button');
+    for (var ab = 0; ab < askBtns.length; ab++) {
+      askBtns[ab].addEventListener('click', function(){
+        salonAsk = this.getAttribute('data-ask');
+        paintSalonAsk();
+      });
+    }
+    $('saveSalonBtn').addEventListener('click', function(ev){
+      var body = $('salonBody').value.trim();
+      if (!body) { return; }
+      var first = !state.salon.rewarded;
+      state.salon.posts.unshift({ id: 'salon' + Date.now(), q: $('salonQ').value, ask: salonAsk, body: body, at: stampNow() });
+      state.salon.rewarded = true;
+      save();
+      closeSheet($('sheetSalon'));
+      paintSalon();
+      $('screens').scrollTop = 0;
+      if (first) {
+        addSeeds(5, ev);
+        toast('첫 글 +5 씨앗 · 온기 살롱에 올라갔어요');
+      } else {
+        toast('온기 살롱에 올라갔어요');
+      }
+    });
+
+    /* 품앗이 · 교환 제안 */
+    document.addEventListener('click', function(e){
+      var btn = e.target.closest ? e.target.closest('[data-propose]') : null;
+      if (!btn) { return; }
+      var id = btn.getAttribute('data-propose');
+      if (state.pumasi.proposed[id]) { return; }
+      state.pumasi.proposed[id] = true;
+      save();
+      paintPumasi();
+      addSeeds(5, e);
+      toast('교환 제안을 보냈어요 · 상대방과 연결 대기 중');
+    });
+
+    /* 품앗이 · 내 품앗이 올리기 */
+    $('addPumasiBtn').addEventListener('click', function(){
+      $('pumasiGive').value = '';
+      $('pumasiWant').value = '';
+      $('pumasiMeta').value = '';
+      paintPumasiForm();
+      openSheet('sheetPumasi');
+      window.setTimeout(function(){ $('pumasiGive').focus(); }, 320);
+    });
+    $('pumasiGive').addEventListener('input', paintPumasiForm);
+    $('pumasiWant').addEventListener('input', paintPumasiForm);
+    $('savePumasiBtn').addEventListener('click', function(){
+      var give = $('pumasiGive').value.trim();
+      var want = $('pumasiWant').value.trim();
+      if (!give || !want) { return; }
+      var meta = $('pumasiMeta').value.trim() || '동네·방식 미정';
+      state.pumasi.mine.unshift({ id: 'pumasi' + Date.now(), give: give, want: want, meta: meta });
+      save();
+      closeSheet($('sheetPumasi'));
+      paintPumasi();
+      $('screens').scrollTop = 0;
+      toast('내 품앗이가 교환소에 올라갔어요');
+    });
   }
 
   function paintAll(){
@@ -3271,6 +3692,9 @@ select{
     paintMorningTimer();
     paintSeg();
     paintCardForm();
+    paintSalonAsk();
+    paintSalonForm();
+    paintPumasiForm();
     paintChest();
     paintLessonTags();
     paintLessonProgress();
