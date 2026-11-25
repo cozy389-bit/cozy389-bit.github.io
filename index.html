@@ -1868,6 +1868,13 @@ select{
     addSeeds(20);
     paintHome();
     paintLessonSheet(false);
+    var body = $('sheetLecture').querySelector('.sheet-body');
+    var done = $('lessonDone');
+    if (body && done) {
+      window.setTimeout(function(){
+        body.scrollTop = Math.max(0, done.offsetTop - body.offsetTop - 12);
+      }, 240);
+    }
     toast('수강 완료 · +20 씨앗');
   }
 
