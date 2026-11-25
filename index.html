@@ -784,7 +784,53 @@ select{
   font-size:13px;font-weight:700;color:#6A5636;
 }
 .gift-chip b{font-size:15px;line-height:1}
+.gift-chip{cursor:pointer;transition:transform .16s ease, box-shadow .2s ease, border-color .2s ease}
+.gift-chip:active{transform:scale(.97)}
+.gift-chip:focus-visible{outline:2.5px solid #E0A43F;outline-offset:2px}
+.gift-chip.new{border-color:#E7B96B;background:#FFFAF0;box-shadow:0 0 0 3px rgba(224,164,63,.13)}
+.gift-chip.new::after{content:"";width:7px;height:7px;border-radius:50%;background:#E0A43F;margin-left:1px;animation:giftDot 1.9s ease-in-out infinite}
+@keyframes giftDot{0%,100%{opacity:.35;transform:scale(.85)}50%{opacity:1;transform:scale(1)}}
+.gift-chip.locked{background:#FBF7EF;border-style:dashed;border-color:#E5DCC9;color:#8B8478}
+.gift-chip.locked b{filter:grayscale(.45);opacity:.7}
+.gift-preview{margin:13px 0 0;padding:12px 0 0;border-top:1px dashed #EEE3D1}
+.gift-preview-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:8px}
+.gift-preview-head strong{font-size:13px;font-weight:800;letter-spacing:-.01em;color:#8A7452}
+.gift-preview-head span{font-size:11.5px;font-weight:700;color:var(--muted)}
+.gift-forecast-note{margin:12px 0 0;padding:9px 11px;border-radius:13px;background:linear-gradient(160deg,#FFF9EE,#FBF3E5);border:1px solid #F0E2C8;font-size:12.5px;font-weight:700;line-height:1.55;color:#8A7452}
 .gift-empty{margin:0;font-size:13.5px;color:var(--muted);font-weight:600}
+
+/* ── 경험 나눔 팁 ───────────────────────── */
+.share-tip{
+  display:flex;align-items:flex-start;gap:9px;padding:11px 13px;border-radius:15px;margin:0 0 14px;
+  background:linear-gradient(160deg,#F3F8F3,#EBF3EC);border:1px solid #D9E8DC;
+  font-size:12.8px;font-weight:700;line-height:1.6;color:#41604D;
+}
+.share-tip .ico{font-size:15px;line-height:1.45;flex:0 0 auto}
+.share-tip p{margin:0}
+.share-tip b{font-weight:800;color:var(--green-dark)}
+.share-tip .share-tip-kicker{display:block;margin-bottom:2px;font-size:12.5px;font-weight:800;color:var(--green-dark);letter-spacing:-.01em}
+.gift-arrive{margin:9px 0 0;padding:10px 12px;border-radius:13px;background:#FFF7E8;border:1px solid #F0DFC0;font-size:12.8px;font-weight:800;line-height:1.5;color:#8A5A1C}
+
+/* ── 선물 상세 시트 ─────────────────────── */
+.gift-detail{
+  margin:2px 0 12px;padding:20px 16px 16px;border-radius:20px;text-align:center;
+  background:linear-gradient(150deg,#FFF9EC,#FBEFDA);border:1px solid #F0DCB8;
+  box-shadow:0 14px 30px rgba(160,120,50,.14);
+  animation:rewardIn .6s cubic-bezier(.2,1.25,.4,1) both;
+}
+.gift-detail-ico{width:68px;height:68px;margin:0 auto 10px;border-radius:50%;display:grid;place-items:center;font-size:32px;background:#fff;box-shadow:0 8px 18px rgba(160,120,50,.2)}
+.gift-detail-kicker{display:block;font-size:11.5px;font-weight:800;letter-spacing:.06em;color:var(--amber)}
+.gift-detail-title{display:block;margin:5px 0 7px;font-size:19px;font-weight:800;letter-spacing:-.02em;line-height:1.35}
+.gift-detail-desc{margin:0;font-size:14px;line-height:1.65;color:#6A5636}
+.gift-how{margin:13px 0 0;padding:12px 13px;border-radius:14px;background:#fff;border:1.5px dashed #E6D8C0;text-align:left}
+.gift-how-kicker{display:block;margin-bottom:4px;font-size:11.5px;font-weight:800;letter-spacing:.06em;color:#8A7452}
+.gift-how p{margin:0;font-size:13.3px;font-weight:700;line-height:1.6;color:#5F5240}
+.gift-forecast{margin:0 0 4px;padding:16px 15px 14px;border-radius:18px;background:#F4F8F4;border:1px solid #DCE9DE}
+.gift-forecast-kicker{display:block;font-size:12px;font-weight:800;color:var(--green-dark);letter-spacing:.01em}
+.gift-forecast p{margin:6px 0 0;font-size:13px;font-weight:700;line-height:1.6;color:#3E5B4B}
+.gift-perks{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+.gift-perks span{font-size:12px;font-weight:800;color:#4A3E28;background:#fff;border:1px solid #E7DFCB;border-radius:999px;padding:5px 10px}
+.gift-forecast .gift-forecast-now{margin:10px 0 0;font-size:12px;font-weight:700;color:#7B8A79}
 
 /* ── 보물상자 시트 ──────────────────────── */
 .chest-stage{position:relative;height:206px;display:grid;place-items:center;margin:2px 0 0;isolation:isolate}
@@ -1248,8 +1294,13 @@ select{
         </button>
 
         <div class="gift-shelf">
-          <div class="gift-head"><h3>선물함</h3><span id="giftCount">0개</span></div>
+          <div class="gift-head"><h3>내 선물함</h3><span id="giftCount">0개</span></div>
           <div class="gift-row" id="giftRow"></div>
+          <div class="gift-preview">
+            <div class="gift-preview-head"><strong>다음에 받을 선물</strong><span>눌러서 받는 법 보기</span></div>
+            <div class="gift-row" id="giftLockedRow"></div>
+          </div>
+          <p class="gift-forecast-note">🌱 씨앗과 선물이 모이면 1기 완주 선물(커피 쿠폰·서점 할인·심화반 할인권 등)로 이어집니다.</p>
         </div>
       </div>
 
@@ -1365,6 +1416,11 @@ select{
           <div class="cheer-meta"><span id="cheerToday">오늘 0명 응원했어요</span><span id="cheerTotal">함께 12번</span></div>
         </div>
 
+        <div class="share-tip" id="tipCrew">
+          <span class="ico" aria-hidden="true">🌱</span>
+          <p><span class="share-tip-kicker">내 경험 한 줄이 선물이 돼요</span>경험 카드에 남긴 팁은 누군가의 오늘을 돕습니다. 처음 올리면 선물함에 <b>‘경험 나눔 배지’</b>와 씨앗 10개가 들어와요.</p>
+        </div>
+
         <div class="section-head" style="margin-top:20px">
           <h2>오늘의 식사 루틴 응원</h2>
           <span class="hint">활력의 숲 3조</span>
@@ -1390,6 +1446,10 @@ select{
           <span class="ico" aria-hidden="true">🔥</span>
           <span>훈수·비교·영업 없이, 온기 스탬프로만 마음을 건네는 방입니다.</span>
         </div>
+        <div class="share-tip" id="tipSalon">
+          <span class="ico" aria-hidden="true">🕯️</span>
+          <p><span class="share-tip-kicker">여기서 나눈 한 줄도 선물이 돼요</span>내 경험을 팁으로 나누면 선물함에 <b>‘온기 나눔 선물’</b>이 쌓입니다. 처음 글을 올리면 씨앗 10개도 함께 들어와요.</p>
+        </div>
         <div class="section-head">
           <h2>모닥불 온기 살롱</h2>
           <span class="hint" id="salonCount">글 2개</span>
@@ -1407,6 +1467,10 @@ select{
         <div class="safety-badge">
           <span class="ico" aria-hidden="true">🛡️</span>
           <span>기본 퀘스트 1주 이상 완주자만 열 수 있어요 · 현금/대리결제·고위험 의료행위 제외</span>
+        </div>
+        <div class="share-tip" id="tipPumasi">
+          <span class="ico" aria-hidden="true">🤝</span>
+          <p><span class="share-tip-kicker">처음 품앗이도 선물이 돼요</span>내 시간과 손길을 적어 올리면 선물함에 <b>‘품앗이 나눔 배지’</b>와 씨앗 10개가 들어옵니다. 이웃과 이어지는 첫 매듭이에요.</p>
         </div>
         <div class="section-head">
           <h2>품앗이 교환소</h2>
@@ -1632,6 +1696,10 @@ select{
           <label for="ans3">③ 지금의 나에게 한마디</label>
           <input type="text" id="ans3" maxlength="80" placeholder="비워 두어도 괜찮아요">
         </div>
+        <div class="share-tip" id="tipLibrary" style="margin:4px 0 12px">
+          <span class="ico" aria-hidden="true">🌿</span>
+          <p><span class="share-tip-kicker">여기 남긴 세 줄도 나눔이 돼요</span>세 줄은 <b>‘나의 숲 노트’</b>가 되고, 공방에 수업으로 제안하면 선물함에 <b>‘재능 나눔 배지’</b>가 쌓입니다.</p>
+        </div>
       </div>
       <div class="sheet-foot">
         <button class="btn btn-primary" type="button" id="libraryComplete" disabled>카드를 뽑으면 완료할 수 있어요</button>
@@ -1670,6 +1738,10 @@ select{
           <button class="chip" type="button">손주와 노는 10분</button>
         </div>
         <p class="hint" style="display:block;white-space:normal;margin:10px 0 8px">이 한 줄은 나중에 ‘인생 경험 카드’가 됩니다.</p>
+        <div class="share-tip" id="tipAtelier">
+          <span class="ico" aria-hidden="true">🧶</span>
+          <p><span class="share-tip-kicker">내 경험을 팁으로 나누면</span>선물함에 <b>‘재능 나눔 배지’</b>가 쌓여요. 아래에서 분야와 한 줄 소개만 남겨도, 오래 해 온 일이 10분 수업이 되는 첫 걸음이 됩니다.</p>
+        </div>
 
         <div class="gh-sub">
           <h2>내 경험이 수업·수입이 되는 3단계</h2>
@@ -1701,6 +1773,7 @@ select{
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6 9 17l-5-5" stroke="#2E5E4E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           후보 등록 완료! 공방 목록에 내 재능 카드가 올라갔어요
         </div>
+        <p class="gift-arrive" id="guildGiftNote" hidden></p>
         <div class="gh-apply" id="guildApplyBox" hidden>
           <div class="field">
             <label for="guildFieldInput">분야</label>
@@ -1831,6 +1904,45 @@ select{
       </div>
       <div class="sheet-foot">
         <button class="btn btn-primary" type="button" id="savePumasiBtn" disabled>줄 것과 받을 것을 적어 주세요</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 선물 자세히 보기 ═══ -->
+  <div class="overlay" id="sheetGift" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="giftSheetTitle">
+      <div class="sheet-grab" aria-hidden="true"></div>
+      <div class="sheet-head">
+        <h2 id="giftSheetTitle">받은 선물</h2>
+        <p id="giftSheetSub">받은 선물의 의미를 다시 꺼내 봐요.</p>
+        <button class="sheet-close" type="button" data-close aria-label="닫기">
+          <svg viewBox="0 0 24 24" fill="none"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="sheet-body">
+        <div class="gift-detail">
+          <span class="gift-detail-ico" id="giftDetailIcon" aria-hidden="true">🎁</span>
+          <span class="gift-detail-kicker" id="giftDetailKicker">선물함에 있어요</span>
+          <strong class="gift-detail-title" id="giftDetailTitle">숲의 엽서</strong>
+          <p class="gift-detail-desc" id="giftDetailDesc"></p>
+          <div class="gift-how" id="giftHowBox">
+            <span class="gift-how-kicker" id="giftHowKicker">이렇게 받았어요</span>
+            <p id="giftHowText"></p>
+          </div>
+        </div>
+        <div class="gift-forecast" id="giftForecast">
+          <span class="gift-forecast-kicker">🌱 씨앗과 선물이 모이면</span>
+          <p>씨앗·선물이 모이면 1기 완주 선물(커피 쿠폰·서점 할인·심화반 할인권 등)로 이어집니다.</p>
+          <div class="gift-perks">
+            <span>☕ 커피 쿠폰</span>
+            <span>📚 서점 할인</span>
+            <span>🎓 심화반 할인권</span>
+          </div>
+          <p class="gift-forecast-now" id="giftForecastNow"></p>
+        </div>
+      </div>
+      <div class="sheet-foot">
+        <button class="btn btn-primary" type="button" id="giftClose">닫기</button>
       </div>
     </div>
   </div>
@@ -2728,13 +2840,83 @@ select{
 
   /* ── 보물상자 · 선물함 ───────────────── */
   var REWARDS = [
-    { id: 'postcard', icon: '🌿', title: '숲의 엽서', desc: '“서두르지 않는 걸음이 가장 멀리 갑니다” — 서재 창가에서 고른 한 문장이에요.' },
-    { id: 'picnic', icon: '🎟️', title: '1기 오프라인 소풍 1회 우선권', desc: '두 번째 숲 1기 원정대 소풍 신청을 하루 먼저 열어 드려요.' },
-    { id: 'compass', icon: '🏅', title: '숨은 배지 · 첫 탐험가의 나침반', desc: '네 섬을 다 돌기 전에 만나는 숨은 배지예요. 내 방 선반에 놓여요.' },
-    { id: 'seeds15', icon: '🌱', title: '보너스 씨앗 +15', desc: '오늘의 걸음에 씨앗 15개를 더했어요.', seeds: 15 },
-    { id: 'teabag', icon: '🍵', title: '마음의 온천 티백', desc: '온천 미션을 마친 날 마시는 캐모마일 한 잔, 오늘 밤을 위해.' },
-    { id: 'bookmark', icon: '📖', title: '길잡이의 서재 안내', desc: '민담 카드에 이어 읽을 책 세 권을 적어 둔 책갈피예요.' }
+    { id: 'postcard', icon: '🌿', title: '숲의 엽서', short: '숲의 엽서', desc: '“서두르지 않는 걸음이 가장 멀리 갑니다” — 서재 창가에서 고른 한 문장이에요.', how: '오늘의 보물상자를 열면 나오는 선물 중 하나예요. 씨앗 130개를 모으거나 오늘의 퀘스트 하나를 마치면 상자가 열립니다.' },
+    { id: 'picnic', icon: '🎟️', title: '1기 오프라인 소풍 1회 우선권', short: '1기 소풍 우선권', desc: '두 번째 숲 1기 원정대 소풍 신청을 하루 먼저 열어 드려요.', how: '보물상자에서 가끔 나오는 귀한 선물이에요. 1기 원정대 소풍 신청을 하루 먼저 여는 우선권입니다.' },
+    { id: 'compass', icon: '🏅', title: '숨은 배지 · 첫 탐험가의 나침반', short: '첫 탐험가의 나침반', desc: '네 섬을 다 돌기 전에 만나는 숨은 배지예요. 내 방 선반에 놓여요.', how: '네 섬을 다 돌기 전에 만나는 숨은 배지예요. 보물상자를 열다 보면 만날 수 있습니다.' },
+    { id: 'seeds15', icon: '🌱', title: '보너스 씨앗 +15', short: '보너스 씨앗', desc: '오늘의 걸음에 씨앗 15개를 더했어요.', seeds: 15, how: '오늘의 보물상자에서 나오는 선물이에요. 받는 순간 씨앗 15개가 함께 들어옵니다.' },
+    { id: 'teabag', icon: '🍵', title: '마음의 온천 티백', short: '온천 티백', desc: '온천 미션을 마친 날 마시는 캐모마일 한 잔, 오늘 밤을 위해.', how: '마음의 온천에서 오늘의 감정 날씨를 고르고 미션을 마치면 선물함에 들어옵니다.' },
+    { id: 'bookmark', icon: '📖', title: '길잡이의 서재 안내', short: '서재 책갈피', desc: '민담 카드에 이어 읽을 책 세 권을 적어 둔 책갈피예요.', how: '지혜의 서재에서 민담 카드를 뒤집고 세 줄을 남기면 들어옵니다.' }
   ];
+
+  /* 경험을 나누면 들어오는 선물 — 자리마다 하나씩, 처음 한 번만 */
+  var SHARE_GIFTS = {
+    shareCard: {
+      id: 'shareCard', icon: '🗂️', title: '경험 나눔 배지', short: '경험 나눔', seeds: 10,
+      desc: '내 인생 경험을 한 줄 팁으로 나눈 사람에게 주는 배지예요. 남긴 팁은 누군가의 오늘에 작은 길잡이가 됩니다.',
+      how: '동네 광장 · 조원 응원에서 ‘내 경험 카드 올리기’로 제목과 한 줄 팁을 남기면 받아요.'
+    },
+    shareSalon: {
+      id: 'shareSalon', icon: '🕯️', title: '온기 나눔 선물', short: '온기 나눔', seeds: 10,
+      desc: '온기 살롱에서 나눈 한 줄에 주는 작은 선물이에요. 말 대신 온기가 오가는 자리의 표식입니다.',
+      how: '동네 광장 · 온기 살롱에서 오늘 마음에 남은 한 줄을 올리면 받아요.'
+    },
+    sharePumasi: {
+      id: 'sharePumasi', icon: '🤝', title: '품앗이 나눔 배지', short: '품앗이 나눔', seeds: 10,
+      desc: '돈 대신 시간과 손길을 나누는 첫 품앗이에 주는 배지예요. 이웃과 이어지는 첫 매듭입니다.',
+      how: '동네 광장 · 품앗이 교환소에서 줄 것과 받을 것을 적어 올리면 받아요.'
+    },
+    shareGuild: {
+      id: 'shareGuild', icon: '🧶', title: '재능 나눔 배지', short: '재능 나눔', seeds: 10,
+      desc: '오래 해 온 일을 10분 수업으로 나누기 시작한 사람에게 주는 배지예요. 수업과 수입으로 이어지는 첫 씨앗입니다.',
+      how: '재능의 공방에서 ‘나도 길드장 신청해 보기’로 분야와 한 줄 소개를 남기면 받아요.'
+    }
+  };
+  var ART_GIFT = {
+    id: 'artdate', icon: '🎒', title: '나홀로 소풍 배지', short: '나홀로 소풍 배지',
+    desc: '누구에게도 맞추지 않고 나만 좋아서 한 30분을 다녀온 기념 배지예요.',
+    how: '마음의 온천에서 이번 주 나홀로 소풍 미션을 하나 골라 다녀오면 놓입니다.'
+  };
+  var GIFT_GOAL = 6;
+  function giftCatalog(){
+    var list = [];
+    var order = ['shareCard', 'shareSalon', 'sharePumasi', 'shareGuild'];
+    for (var a = 0; a < order.length; a++) { list.push(SHARE_GIFTS[order[a]]); }
+    list.push(ART_GIFT);
+    for (var b = 0; b < REWARDS.length; b++) { list.push(REWARDS[b]); }
+    return list;
+  }
+  function giftInfo(id){
+    var cat = giftCatalog();
+    var i;
+    for (i = 0; i < cat.length; i++) { if (cat[i].id === id) { return cat[i]; } }
+    var gifts = state.gifts || [];
+    for (i = 0; i < gifts.length; i++) { if (gifts[i].id === id) { return gifts[i]; } }
+    return null;
+  }
+  function hasGift(id){
+    var gifts = state.gifts || [];
+    for (var i = 0; i < gifts.length; i++) { if (gifts[i].id === id) { return true; } }
+    return false;
+  }
+  function giftDayLabel(day){
+    var p = String(day || '').split('-');
+    if (p.length < 3) { return ''; }
+    return p[1] + '월 ' + p[2] + '일 받음';
+  }
+  /* 경험을 나눈 자리에서 처음 한 번, 선물과 씨앗 보너스를 선물함에 넣어요 */
+  function shareGift(id, ev){
+    var g = SHARE_GIFTS[id];
+    if (!g || hasGift(id)) { return null; }
+    state.gifts.push({
+      id: g.id, icon: g.icon, title: g.title, desc: g.desc, short: g.short,
+      day: todayKey(), share: true, isNew: true
+    });
+    save();
+    addSeeds(g.seeds || 10, ev);
+    paintChest();
+    paintHome();
+    return g;
+  }
   function chestOpenedToday(){ return state.chest.openedDay === todayKey(); }
   function chestReady(){
     return state.seeds >= 130 || (state.quests && (state.quests.water || state.quests.manual));
@@ -2764,15 +2946,64 @@ select{
     $('giftCount').textContent = gifts.length + '개';
     var row = $('giftRow');
     if (!gifts.length) {
-      row.innerHTML = '<p class="gift-empty">아직 담긴 선물이 없어요. 보물상자를 열어 보세요.</p>';
-      return;
+      row.innerHTML = '<p class="gift-empty">아직 담긴 선물이 없어요. 보물상자를 열거나 경험을 나눠 보세요.</p>';
+    } else {
+      var html = '';
+      for (var i = gifts.length - 1; i >= 0; i--) {
+        var g = gifts[i];
+        var label = (g.short || g.title) + ' 자세히 보기';
+        html += '<button class="gift-chip' + (g.isNew ? ' new' : '') + '" type="button" data-gift="' + esc(g.id) + '" title="' + esc(g.desc) + '" aria-label="' + esc(label) + '"><b aria-hidden="true">' + esc(g.icon) + '</b>' + esc(g.short || g.title) + '</button>';
+      }
+      row.innerHTML = html;
     }
+    paintGiftLocked();
+  }
+  /* 아직 받지 못한 선물은 ‘받는 법’을 볼 수 있는 잠긴 칩으로 보여 줘요 */
+  function paintGiftLocked(){
+    var row = $('giftLockedRow');
+    if (!row) { return; }
+    var cat = giftCatalog();
     var html = '';
-    for (var i = gifts.length - 1; i >= 0; i--) {
-      var g = gifts[i];
-      html += '<button class="gift-chip" type="button" data-gift="' + esc(g.id) + '" title="' + esc(g.desc) + '"><b aria-hidden="true">' + esc(g.icon) + '</b>' + esc(g.short || g.title) + '</button>';
+    var n = 0;
+    for (var i = 0; i < cat.length; i++) {
+      var c = cat[i];
+      if (!c || c.id === 'seeds15' || hasGift(c.id)) { continue; }
+      html += '<button class="gift-chip locked" type="button" data-gift-locked="' + esc(c.id) + '" aria-label="' + esc(c.title + ' 받는 법 보기') + '"><b aria-hidden="true">' + esc(c.icon) + '</b>' + esc(c.short || c.title) + '</button>';
+      n += 1;
+      if (n >= 6) { break; }
     }
-    row.innerHTML = html;
+    row.innerHTML = html || '<p class="gift-empty">받을 수 있는 선물을 모두 모았어요. 1기 완주 선물로 이어집니다.</p>';
+  }
+  function openGiftSheet(id){
+    var info = giftInfo(id);
+    if (!info) { return; }
+    var stored = null;
+    var gifts = state.gifts || [];
+    var i;
+    for (i = 0; i < gifts.length; i++) { if (gifts[i].id === id) { stored = gifts[i]; } }
+    var owned = !!stored;
+    $('giftDetailIcon').textContent = (owned ? stored.icon : info.icon) || '🎁';
+    $('giftDetailTitle').textContent = (owned ? stored.title : info.title) || '';
+    $('giftDetailDesc').textContent = (owned ? stored.desc : info.desc) || '';
+    var kicker = owned ? '선물함에 있어요' : '아직 잠긴 선물이에요';
+    if (owned && giftDayLabel(stored.day)) { kicker += ' · ' + giftDayLabel(stored.day); }
+    $('giftDetailKicker').textContent = kicker;
+    $('giftSheetTitle').textContent = owned ? '받은 선물' : '받을 수 있는 선물';
+    $('giftSheetSub').textContent = owned
+      ? '받은 선물의 의미를 다시 꺼내 봐요.'
+      : '조금만 더 걸으면 만날 수 있는 선물이에요.';
+    $('giftHowKicker').textContent = owned ? '이렇게 받았어요' : '받는 법';
+    $('giftHowText').textContent = info.how || '';
+    var count = gifts.length;
+    var left = Math.max(0, GIFT_GOAL - count);
+    $('giftForecastNow').textContent = '지금 선물 ' + count + '개 · 씨앗 ' + state.seeds + '개'
+      + (left ? ' — 1기 완주 선물까지 선물 ' + left + '개 남았어요' : ' — 1기 완주 선물에 닿았어요');
+    openSheet('sheetGift');
+    if (owned && stored.isNew) {
+      stored.isNew = false;
+      save();
+      paintChest();
+    }
   }
 
   var chestTimers = [];
@@ -3584,12 +3815,13 @@ select{
       state.gifts.push({
         id: 'artdate', icon: '🎒', title: '나홀로 소풍 배지',
         desc: '이번 주 나홀로 소풍 — ' + mission + '. 내 방 선반에 놓인 기념품이에요.',
-        short: '나홀로 소풍', day: todayKey()
+        short: '나홀로 소풍', day: todayKey(), isNew: true
       });
     }
     save();
     paintArtDate();
     paintHome();
+    paintChest();
     addSeeds(15, ev);
     toast('이번 주 소풍 완료 · +15 씨앗, 🎒 배지를 놓았어요');
   }
@@ -3806,6 +4038,14 @@ select{
       tg.textContent = guildFormOpen ? '신청 칸 접기' : (ap.saved ? '내 후보 카드 고치기' : '나도 길드장 신청해 보기 (체험)');
     }
     paintGuildApplyBtn();
+    var note = $('guildGiftNote');
+    if (note) {
+      var got = hasGift('shareGuild');
+      note.hidden = !got || guildFormOpen;
+      if (got) {
+        note.textContent = '🎁 재능 나눔 배지가 선물함에 있어요 · +10 씨앗과 함께 들어온 첫 나눔입니다.';
+      }
+    }
   }
   function paintGuild(){
     var list = $('guildList');
@@ -4234,12 +4474,15 @@ select{
       state.guild.apply = { field: f, intro: t, saved: true };
       save();
       guildFormOpen = false;
+      var shared = shareGift('shareGuild', null);
       paintGuild();
       var body = $('sheetAtelier').querySelector('.sheet-body');
+      var note = $('guildGiftNote');
       var mine = $('guildList').querySelector('.gh-card.mine');
-      if (body && mine) {
+      var focusEl = (shared && note && !note.hidden) ? note : mine;
+      if (body && focusEl) {
         window.setTimeout(function(){
-          body.scrollTop = Math.max(0, mine.offsetTop - body.offsetTop - 8);
+          body.scrollTop = Math.max(0, focusEl.offsetTop - body.offsetTop - 8);
         }, 240);
       }
     });
@@ -4272,14 +4515,15 @@ select{
         if (row && row.scrollIntoView) { row.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
       }
     });
-    $('giftRow').addEventListener('click', function(ev){
-      var chip = ev.target.closest ? ev.target.closest('[data-gift]') : null;
+    $('giftClose').addEventListener('click', function(){
+      closeSheet($('sheetGift'));
+    });
+    document.addEventListener('click', function(e){
+      var chip = e.target.closest ? e.target.closest('[data-gift],[data-gift-locked]') : null;
       if (!chip) { return; }
-      var id = chip.getAttribute('data-gift');
-      var gifts = state.gifts || [];
-      for (var gi = 0; gi < gifts.length; gi++) {
-        if (gifts[gi].id === id) { toast(gifts[gi].desc); return; }
-      }
+      var id = chip.getAttribute('data-gift') || chip.getAttribute('data-gift-locked');
+      if (!id) { return; }
+      openGiftSheet(id);
     });
 
     /* 오늘의 미니 강의 */
@@ -4366,7 +4610,7 @@ select{
         paintSeg();
       });
     }
-    $('saveCardBtn').addEventListener('click', function(){
+    $('saveCardBtn').addEventListener('click', function(ev){
       var t = $('cardTitle').value.trim();
       var tip = $('cardTip').value.trim();
       if (!t || !tip) { return; }
@@ -4384,7 +4628,10 @@ select{
       paintCards();
       $('screens').scrollTop = 0;
       switchTab('plaza');
-      toast('내 경험 카드가 광장에 올라갔어요');
+      var shared = shareGift('shareCard', ev);
+      toast(shared
+        ? '경험 카드 올림 · 🎁 ' + shared.short + ' +' + shared.seeds + ' 씨앗'
+        : '내 경험 카드가 광장에 올라갔어요');
     });
 
     /* 광장 · 하위 탭 */
@@ -4436,8 +4683,11 @@ select{
       closeSheet($('sheetSalon'));
       paintSalon();
       $('screens').scrollTop = 0;
-      if (first) {
-        addSeeds(5, ev);
+      if (first) { addSeeds(5, ev); }
+      var shared = shareGift('shareSalon', ev);
+      if (shared) {
+        toast('첫 글 +5 · 🎁 ' + shared.short + ' +' + shared.seeds + ' 씨앗');
+      } else if (first) {
         toast('첫 글 +5 씨앗 · 온기 살롱에 올라갔어요');
       } else {
         toast('온기 살롱에 올라갔어요');
@@ -4468,7 +4718,7 @@ select{
     });
     $('pumasiGive').addEventListener('input', paintPumasiForm);
     $('pumasiWant').addEventListener('input', paintPumasiForm);
-    $('savePumasiBtn').addEventListener('click', function(){
+    $('savePumasiBtn').addEventListener('click', function(ev){
       var give = $('pumasiGive').value.trim();
       var want = $('pumasiWant').value.trim();
       if (!give || !want) { return; }
@@ -4478,7 +4728,10 @@ select{
       closeSheet($('sheetPumasi'));
       paintPumasi();
       $('screens').scrollTop = 0;
-      toast('내 품앗이가 교환소에 올라갔어요');
+      var shared = shareGift('sharePumasi', ev);
+      toast(shared
+        ? '🎁 ' + shared.short + ' +' + shared.seeds + ' 씨앗 · 교환소에 올랐어요'
+        : '내 품앗이가 교환소에 올라갔어요');
     });
   }
 
