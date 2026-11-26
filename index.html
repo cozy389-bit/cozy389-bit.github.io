@@ -1065,6 +1065,190 @@ select{
 .gh-meal{margin:0 0 10px;padding:8px 11px;border-radius:11px;background:var(--green-soft);font-size:12.5px;font-weight:800;color:var(--green-dark);line-height:1.5}
 .gh-go{margin-top:9px;width:100%;min-height:46px;border-radius:12px;background:#fff;border:1.5px solid #B4D2C1;font-size:13.5px;font-weight:800;color:var(--green-dark)}
 
+/* ══ 첫 화면 · 세 개의 문 (A안) ═══════════ */
+body.cover-open{overflow:hidden}
+.cover:focus{outline:none}
+.cover{
+  position:fixed;inset:0;z-index:200;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  background:
+    radial-gradient(circle at 10% 6%, rgba(46,94,78,.10), transparent 42%),
+    radial-gradient(circle at 90% 10%, rgba(192,128,54,.13), transparent 40%),
+    radial-gradient(circle at 50% 112%, rgba(125,178,149,.18), transparent 56%),
+    #FAF8F4;
+  color:var(--ink);animation:fadeIn .3s ease both;
+}
+.cover-inner{
+  width:100%;max-width:1180px;margin:0 auto;min-height:100%;
+  display:flex;flex-direction:column;padding:26px 28px 18px;
+}
+.cover-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:clamp(16px,4vh,42px)}
+.cover-brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.02em}
+.cover-brand .brand-mark{width:38px;height:38px;border-radius:13px}
+.cover-brand .brand-mark svg{width:22px;height:22px}
+.cover-tag{font-size:11px;font-weight:800;letter-spacing:.05em;color:#8A7452;background:#F3EBDD;padding:4px 8px;border-radius:7px}
+.cover-top-note{font-size:12.5px;font-weight:700;color:#8A948E;white-space:nowrap}
+.cover-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(20px,4vh,48px);align-items:center;flex:1 1 auto}
+.cover-copy{min-width:0}
+.cover-title{font-size:clamp(27px,7vw,30px);line-height:1.24;letter-spacing:-.035em;font-weight:800;margin:0 0 12px}
+.cover-title span{color:var(--green)}
+.cover-sub{margin:0;font-size:14.9px;line-height:1.55;color:#5C6A62;font-weight:600}
+.doors{display:flex;flex-direction:column;gap:10px;margin:18px 0 0}
+.door{
+  display:flex;align-items:center;gap:13px;width:100%;min-height:84px;
+  padding:12px 14px;border-radius:20px;text-align:left;
+  background:#fff;border:1.6px solid #E7E0D4;
+  box-shadow:0 6px 18px rgba(46,94,78,.06);
+  transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.door:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(46,94,78,.13);border-color:#BFD8C8}
+.door:active{transform:scale(.992)}
+.door-ico{
+  flex:0 0 auto;width:46px;height:46px;border-radius:15px;display:grid;place-items:center;
+  font-size:22px;background:var(--soft,#EAF3ED);
+}
+.door-body{flex:1 1 auto;min-width:0}
+.door-body strong{display:block;font-size:17.5px;font-weight:800;letter-spacing:-.025em;line-height:1.3}
+.door-body small{display:block;margin-top:3px;font-size:11.8px;font-weight:700;color:#8A948E;line-height:1.4}
+.door-go{
+  flex:0 0 auto;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+  background:var(--soft,#EAF3ED);color:var(--tint,#2E5E4E);font-size:16px;font-weight:800;
+}
+.door.done{border-color:#CFE3D6;background:#FCFFFD}
+.door.done .door-go{background:var(--green);color:#fff;font-size:14px}
+.cover-skip{
+  display:inline-flex;align-items:center;gap:6px;margin:12px 0 0;min-height:44px;
+  font-size:13.8px;font-weight:700;color:#6C7A72;
+  text-decoration:underline;text-underline-offset:4px;text-decoration-color:#C9D5CE;
+}
+.cover-foot{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-top:16px;padding-top:12px;border-top:1px solid rgba(231,224,212,.9);
+}
+.cover-foot-note{font-size:11.5px;font-weight:700;color:#9AA39D}
+.notice-btn{
+  display:inline-flex;align-items:center;gap:5px;min-height:40px;padding:0 13px;border-radius:999px;
+  background:rgba(255,255,255,.78);border:1px solid #E7E0D4;font-size:12.5px;font-weight:700;color:#7C8A82;
+}
+.cover-visual{display:none;position:relative}
+.cover-visual::before{
+  content:"";position:absolute;inset:-46px;z-index:-1;
+  background:radial-gradient(circle at 58% 42%, rgba(125,178,149,.26), transparent 66%);filter:blur(6px);
+}
+.cv-card{
+  position:relative;background:#fff;border:1px solid #EAE3D7;border-radius:30px;padding:22px;
+  box-shadow:0 30px 70px rgba(35,60,48,.16);transform:rotate(-1.2deg);
+}
+.cv-card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:15px}
+.cv-kicker{font-size:11.5px;font-weight:800;letter-spacing:.09em;color:#8A7452}
+.cv-badge{font-size:11px;font-weight:800;color:#2E5E4E;background:#EAF3ED;padding:6px 10px;border-radius:999px;white-space:nowrap}
+.cv-isles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cv-isle{
+  position:relative;overflow:hidden;display:flex;flex-direction:column;gap:2px;
+  min-height:106px;padding:13px 14px 12px;border-radius:18px;background:var(--soft);
+  border:1px solid rgba(255,255,255,.9);justify-content:flex-end;
+}
+.cv-isle::after{content:"";position:absolute;right:-16px;top:-16px;width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.55)}
+.cv-ico{position:relative;z-index:1;font-size:23px;line-height:1;margin-bottom:auto}
+.cv-isle b{position:relative;z-index:1;font-size:14.5px;font-weight:800;color:var(--tint);letter-spacing:-.02em}
+.cv-isle small{position:relative;z-index:1;font-size:11.3px;font-weight:700;color:#6C7A72}
+.cv-today{margin-top:13px;padding:12px 14px;border-radius:16px;background:#FAF6EE;border:1px dashed #E3D6BE}
+.cv-today-k{font-size:10.5px;font-weight:800;letter-spacing:.06em;color:#A2703A}
+.cv-today p{margin:4px 0 0;font-size:12.6px;line-height:1.55;color:#5A5347;font-weight:600}
+.cv-float{
+  position:absolute;z-index:2;background:#fff;border:1px solid #E7E0D4;border-radius:999px;
+  padding:9px 14px;font-size:12px;font-weight:800;color:var(--green-dark);
+  box-shadow:0 10px 24px rgba(35,60,48,.14);white-space:nowrap;
+}
+.cv-float.f1{right:-12px;top:-18px;transform:rotate(3deg)}
+.cv-float.f2{left:-24px;bottom:-16px;transform:rotate(-3deg);color:#A2703A}
+
+/* 첫 5초 체험 카드 */
+.cq{position:fixed;inset:0;z-index:210;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(26,38,32,.5);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);animation:fadeIn .2s ease}
+.cq-card{
+  position:relative;width:100%;max-width:432px;max-height:92vh;overflow-y:auto;
+  background:#FFFDF9;border-radius:28px;padding:26px 24px 18px;
+  box-shadow:0 30px 70px rgba(20,35,28,.36);animation:cqIn .3s cubic-bezier(.2,.85,.2,1);
+}
+@keyframes cqIn{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+.cq-close{position:absolute;top:12px;right:12px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#F1EDE4;color:#7C8A82;font-size:21px;line-height:1}
+.cq-kicker{margin:0 0 6px;font-size:11.5px;font-weight:800;letter-spacing:.06em;color:var(--tint,#3F7D57)}
+.cq-card h2{margin:0 40px 8px 0;font-size:22px;line-height:1.34;letter-spacing:-.03em}
+.cq-desc{margin:0;font-size:14px;line-height:1.62;color:var(--ink-soft)}
+.cq-stage{display:flex;flex-direction:column;align-items:center;gap:16px;margin:20px 0 4px}
+.cq-ring{position:relative;width:128px;height:128px;display:grid;place-items:center}
+.cq-ring svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.cq-track{fill:none;stroke:#E8EFE9;stroke-width:9}
+.cq-bar{fill:none;stroke:var(--tint,#2E5E4E);stroke-width:9;stroke-linecap:round;stroke-dasharray:326.7;stroke-dashoffset:326.7}
+.cq-count{display:flex;align-items:baseline;gap:2px;color:var(--ink);font-variant-numeric:tabular-nums}
+.cq-count b{font-size:38px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.cq-count em{font-style:normal;font-size:12.5px;font-weight:800;color:#8A948E}
+.cq-start{min-height:56px;font-size:17px;border-radius:16px;background:var(--tint,#2E5E4E);box-shadow:0 8px 20px rgba(46,94,78,.18)}
+.cq-start[disabled]{opacity:.85;cursor:default}
+.cq-result{margin-top:18px;text-align:center}
+.cq-seed{
+  display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:999px;
+  font-size:19px;font-weight:800;color:var(--green-dark);background:var(--green-soft);border:1.5px solid #CFE3D6;
+  animation:seedPop .55s ease both;
+}
+@keyframes seedPop{0%{opacity:0;transform:scale(.72)}62%{transform:scale(1.07)}100%{opacity:1;transform:scale(1)}}
+.cq-done-line{margin:12px 6px 0;font-size:14px;line-height:1.62;color:var(--ink-soft);font-weight:600}
+.cq-actions{display:flex;flex-direction:column;gap:9px;margin-top:18px}
+.cq-actions .btn{min-height:56px;font-size:17px;border-radius:16px}
+.cq-switch,.cq-back{display:block;margin:12px auto 0;min-height:44px;font-size:13px;font-weight:700;color:#6C7A72;text-decoration:underline;text-underline-offset:3px}
+.cq-back{margin-top:2px;color:#9AA39D}
+
+/* 체험 안내 */
+.notice-overlay{position:fixed;inset:0;z-index:300;display:flex;flex-direction:column;justify-content:flex-end;background:rgba(24,34,29,.5);animation:fadeIn .2s ease}
+.notice-overlay .sheet{width:100%;max-width:520px;margin:0 auto}
+.notice-body p{margin:0 0 10px;font-size:14.5px;line-height:1.65;color:var(--ink-soft)}
+.notice-body ul{margin:0 0 12px;padding-left:19px;font-size:14.5px;line-height:1.75;color:var(--ink-soft)}
+.notice-body li{margin-bottom:4px}
+.notice-body strong{color:var(--green-dark)}
+.notice-dot{flex:0 0 auto;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:#fff;color:#8A948E;font-size:15px;font-weight:800;line-height:1}
+.link-cover{
+  display:block;margin:14px auto 0;padding:10px 16px;min-height:44px;
+  font-size:13px;font-weight:700;color:var(--muted);
+  text-decoration:underline;text-underline-offset:3px;
+}
+
+@media (min-width:880px){
+  .cover-inner{padding:34px 40px 22px}
+  .cover-grid{grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:56px}
+  .cover-visual{display:block}
+  .cover-title{font-size:clamp(36px,3.5vw,48px);margin-bottom:16px}
+  .cover-sub{font-size:17px}
+  .doors{gap:12px;margin-top:28px}
+  .door{min-height:92px;padding:15px 17px;gap:15px}
+  .door-ico{width:52px;height:52px;font-size:25px}
+  .door-body strong{font-size:19px}
+  .door-body small{font-size:12.5px}
+  .door-go{width:36px;height:36px}
+  .cover-skip{font-size:14.5px;margin-top:18px}
+  .cover-foot{margin-top:24px;padding-top:14px}
+  .cover-foot-note{font-size:12px}
+}
+@media (max-width:520px){
+  .cover-inner{padding:16px 18px 10px}
+  .cover-top{margin-bottom:14px}
+  .cover-brand{font-size:18px;gap:8px}
+  .cover-brand .brand-mark{width:34px;height:34px;border-radius:12px}
+  .cover-top-note{font-size:11.5px}
+  .cover-title{font-size:clamp(26px,7.4vw,31px)}
+  .cover-sub{font-size:14.3px}
+  .doors{margin-top:16px}
+  .door{min-height:84px}
+  .cover-foot{margin-top:10px;padding-top:10px}
+  .cover-foot-note{font-size:11px}
+  .cq{padding:14px}
+  .cq-card{padding:24px 20px 14px;border-radius:26px}
+}
+@media (max-height:740px) and (max-width:879px){
+  .cover-title{font-size:25px;margin-bottom:8px}
+  .door{min-height:76px}
+  .doors{gap:8px;margin-top:12px}
+  .cover-foot-note{display:none}
+}
+
 @media (prefers-reduced-motion: reduce){
   *{animation-duration:.001ms !important;transition-duration:.001ms !important}
 }
@@ -1081,6 +1265,7 @@ select{
       <span>두 번째 숲</span>
       <span class="proto-tag">시제품</span>
     </div>
+    <button class="notice-dot" id="noticeBtn" type="button" aria-label="체험용 시제품 안내 보기" title="안내">ⓘ</button>
     <div class="seed-chip" id="seedChip" aria-label="내 씨앗">
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21v-9" stroke="#2E5E4E" stroke-width="2" stroke-linecap="round"/><path d="M12 13.4C12 9.4 9 7 5 7c0 4.4 3 6.4 7 6.4Z" fill="#7DB295"/><path d="M12 11.6C12 8 14.6 5.6 18.6 5.6c0 3.8-2.6 6-6.6 6Z" fill="#4E8A63"/></svg>
       <strong id="seedValue">120</strong><span>씨앗</span>
@@ -1106,11 +1291,6 @@ select{
         </div>
         <p class="name-hint">이 기기에만 저장돼요 · 비워 두면 ‘탐험가님’으로 불러요</p>
       </form>
-
-      <p class="demo-badge">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#C08A45" stroke-width="1.8"/><path d="M12 10.6v5.2" stroke="#C08A45" stroke-width="1.9" stroke-linecap="round"/><circle cx="12" cy="7.7" r="1.05" fill="#C08A45"/></svg>
-        <span>체험용 시제품 · 기록은 현재 기기에만 저장됩니다</span>
-      </p>
 
       <p class="lead" id="homeLead">오늘도 여기, 내 방에서 시작해요.</p>
 
@@ -1304,6 +1484,7 @@ select{
         </div>
       </div>
 
+      <button class="link-cover" id="coverBtn" type="button">처음 화면(세 개의 문) 다시 보기</button>
       <button class="link-reset" id="resetBtn" type="button">시제품을 처음 상태로 되돌리기</button>
       <p class="foot-note">이 화면은 〈두 번째 숲〉 시제품이에요. <br>적은 내용은 이 브라우저에만 저장되고 밖으로 나가지 않아요.</p>
     </section>
@@ -2077,6 +2258,131 @@ select{
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </div>
 
+<!-- ═══ 첫 화면 · 세 개의 문 (A안) ═══ -->
+<div class="cover" id="cover" role="dialog" aria-modal="true" aria-label="두 번째 숲 첫 화면" tabindex="-1" hidden>
+  <div class="cover-inner">
+    <header class="cover-top">
+      <div class="cover-brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 21c0-6 3-10 8-11-1 6-3.5 9-8 11Z" fill="#CFE6D8"/><path d="M12 21C12 14 8.5 9.5 4 8.5c.8 6 4 9.5 8 12.5Z" fill="#fff" opacity=".9"/><path d="M12 22V9" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </span>
+        <span>두 번째 숲</span>
+        <span class="cover-tag">시제품</span>
+      </div>
+      <span class="cover-top-note">가입 없이 30초</span>
+    </header>
+
+    <div class="cover-grid">
+      <div class="cover-copy">
+        <h1 class="cover-title">인생의 두 번째 숲,<br><span>오늘은 어디서 쉬어볼까요?</span></h1>
+        <p class="cover-sub">50·60대의 자기돌봄 놀이터 · 가입 없이 30초면 첫 나무를 심어요</p>
+
+        <div class="doors" role="group" aria-label="오늘 마음에 맞는 문 하나를 골라 주세요">
+          <button class="door" type="button" data-door="forest" style="--tint:#3F7D57;--soft:#EAF3ED">
+            <span class="door-ico" aria-hidden="true">🌿</span>
+            <span class="door-body"><strong>몸이 좀 지쳤어요</strong><small>활력의 숲 · 물 한 잔과 5초 숨 고르기</small></span>
+            <span class="door-go" aria-hidden="true">→</span>
+          </button>
+          <button class="door" type="button" data-door="onsen" style="--tint:#B07A34;--soft:#FBF1E1">
+            <span class="door-ico" aria-hidden="true">♨️</span>
+            <span class="door-body"><strong>마음이 심심해요</strong><small>마음의 온천 · 5초 눈 감고 숨 고르기</small></span>
+            <span class="door-go" aria-hidden="true">→</span>
+          </button>
+          <button class="door" type="button" data-door="library" style="--tint:#5B7099;--soft:#EBF0F5">
+            <span class="door-ico" aria-hidden="true">📚</span>
+            <span class="door-body"><strong>뭔가 새로 시작하고 싶어요</strong><small>지혜의 서재 · 재능의 공방</small></span>
+            <span class="door-go" aria-hidden="true">→</span>
+          </button>
+        </div>
+
+        <button class="cover-skip" type="button" id="coverSkip">먼저 숲 전체를 둘러볼래요 <span aria-hidden="true">→</span></button>
+      </div>
+
+      <aside class="cover-visual" aria-hidden="true">
+        <span class="cv-float f1">🌱 씨앗 +10</span>
+        <span class="cv-float f2">🧭 여정 길 4걸음</span>
+        <div class="cv-card">
+          <div class="cv-card-top">
+            <span class="cv-kicker">오늘의 숲 지도</span>
+            <span class="cv-badge">첫 나무 심는 중</span>
+          </div>
+          <div class="cv-isles">
+            <div class="cv-isle" style="--tint:#3F7D57;--soft:#EAF3ED"><span class="cv-ico">🌿</span><b>활력의 숲</b><small>몸을 깨우는 5분</small></div>
+            <div class="cv-isle" style="--tint:#B07A34;--soft:#FBF1E1"><span class="cv-ico">♨️</span><b>마음의 온천</b><small>숨 고르는 온기</small></div>
+            <div class="cv-isle" style="--tint:#5B7099;--soft:#EBF0F5"><span class="cv-ico">📚</span><b>지혜의 서재</b><small>오늘의 질문</small></div>
+            <div class="cv-isle" style="--tint:#C0703F;--soft:#FBEDE6"><span class="cv-ico">🛠️</span><b>재능의 공방</b><small>내 경험 한 줄</small></div>
+          </div>
+          <div class="cv-today">
+            <span class="cv-today-k">오늘의 쉼표</span>
+            <p>“네 개의 섬 중 오늘은 한 곳만. 다녀오면 지도에 발자국이 남아요.”</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="cover-foot">
+      <span class="cover-foot-note">오늘은 한 섬만 다녀와도 충분해요</span>
+      <button class="notice-btn" type="button" id="coverNotice"><span aria-hidden="true">ⓘ</span> 안내</button>
+    </footer>
+  </div>
+</div>
+
+<!-- ═══ 첫 5초 체험 카드 ═══ -->
+<div class="cq" id="coverQuest" hidden>
+  <div class="cq-card" id="cqCard" role="dialog" aria-modal="true" aria-labelledby="cqTitle">
+    <button class="cq-close" type="button" id="cqClose" aria-label="닫기">×</button>
+    <p class="cq-kicker" id="cqKicker">활력의 숲 · 첫 5초</p>
+    <h2 id="cqTitle">물 한 잔 마시고, 어깨를 내려놓기</h2>
+    <p class="cq-desc" id="cqDesc">따뜻한 물 한 잔을 떠올리며 5초 동안 천천히 숨을 골라요.</p>
+
+    <div class="cq-stage" id="cqStage">
+      <div class="cq-ring">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="cq-track" cx="60" cy="60" r="52"></circle><circle class="cq-bar" id="cqBar" cx="60" cy="60" r="52"></circle></svg>
+        <span class="cq-count" aria-live="polite"><b id="cqCount">5</b><em>초</em></span>
+      </div>
+      <button class="btn btn-primary cq-start" type="button" id="cqStart">5초 체험 시작</button>
+    </div>
+
+    <div class="cq-result" id="cqResult" hidden>
+      <div class="cq-seed" id="cqSeed">🌱 씨앗 +10</div>
+      <p class="cq-done-line" id="cqDoneLine">몸이 조금 풀렸어요.</p>
+    </div>
+
+    <div class="cq-actions" id="cqActions" hidden>
+      <button class="btn btn-primary" type="button" id="cqRoom">내 방 열기</button>
+      <button class="btn btn-ghost" type="button" id="cqIsland">이 섬 둘러보기</button>
+    </div>
+    <button class="cq-switch" type="button" id="cqSwitch" hidden>재능의 공방 쪽이 더 끌려요 →</button>
+    <button class="cq-back" type="button" id="cqBack">다른 문 볼래요</button>
+  </div>
+</div>
+
+<!-- ═══ 체험용 시제품 안내 ═══ -->
+<div class="notice-overlay" id="noticeOverlay" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="noticeTitle">
+    <div class="sheet-grab" aria-hidden="true"></div>
+    <div class="sheet-head">
+      <h2 id="noticeTitle">체험용 시제품 안내</h2>
+      <button class="sheet-close" type="button" data-notice-close aria-label="닫기">
+        <svg viewBox="0 0 24 24" fill="none"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="sheet-body notice-body">
+      <p>이 화면은 〈두 번째 숲〉의 <strong>체험용 시제품</strong>이에요. 정식 출시 전, 큰 흐름을 먼저 눌러 보는 자리입니다.</p>
+      <ul>
+        <li>적은 기록·씨앗·배지는 <strong>이 브라우저(이 기기)에만</strong> 저장돼요.</li>
+        <li>서버로 보내지 않고, 다른 사람에게 보이지 않아요.</li>
+        <li>이 기기의 브라우저 기록을 지우면 함께 사라져요.</li>
+        <li>일부 인원·수치는 예시(샘플)예요.</li>
+      </ul>
+      <p>정식 버전에서는 모임·강의·품앗이 기록이 함께 이어질 예정이에요.</p>
+    </div>
+    <div class="sheet-foot">
+      <button class="btn btn-primary" type="button" data-notice-close>알겠어요</button>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
   'use strict';
@@ -2106,6 +2412,7 @@ select{
     return {
       day: todayKey(),
       userName: '탐험가',
+      cover: { passed: false, doneDoors: [] },
       seeds: 120,
       mood: null,
       tones: [],
@@ -2301,6 +2608,245 @@ select{
     $('screens').scrollTop = 0;
     if (name === 'map') { paintMap(); }
     if (name === 'plaza') { paintPlaza(); }
+  }
+
+  /* ── 첫 화면 · 세 개의 문 (A안) ─────────── */
+  var COVER_DOORS = {
+    forest: {
+      island: '활력의 숲', tint: '#3F7D57', soft: '#EAF3ED',
+      title: '물 한 잔 마시고, 어깨를 내려놓기',
+      desc: '따뜻한 물 한 잔을 떠올리며 5초 동안 천천히 숨을 골라요. 운동이 아니라 오늘의 몸에 인사하는 시간이에요.',
+      after: '몸이 조금 풀렸어요. 활력의 숲에서 5분 산책을 이어갈 수 있어요.'
+    },
+    onsen: {
+      island: '마음의 온천', tint: '#B07A34', soft: '#FBF1E1',
+      title: '5초 동안 눈을 감고 숨 고르기',
+      desc: '4초 들이쉬고 6초 내쉬기는 천천히 익혀요. 지금은 5초만, 아무것도 하지 않아도 괜찮아요.',
+      after: '마음이 한 뼘 가벼워졌어요. 온천에서 오늘의 감정 날씨를 골라볼 수 있어요.'
+    },
+    library: {
+      island: '지혜의 서재', tint: '#5B7099', soft: '#EBF0F5',
+      title: '요즘 마음에 남은 문장 하나 떠올리기',
+      desc: '책이 아니어도 좋아요. 누군가 했던 말, 라디오에서 들은 한 줄이면 충분해요.',
+      after: '그 문장이 오늘의 질문이 됐어요. 서재에서 카드 세 장을 뒤집어 볼 수 있어요.'
+    },
+    atelier: {
+      island: '재능의 공방', tint: '#C0703F', soft: '#FBEDE6',
+      title: '내가 잘하는 것 하나 떠올리기',
+      desc: '30년 해 온 일이 아니어도 괜찮아요. 김장 물 맞추기, 손주와 노는 법처럼 작은 것도 재능이에요.',
+      after: '그 한 줄이 10분 수업의 씨앗이 돼요. 공방에서 이어서 적어볼 수 있어요.'
+    }
+  };
+  var COVER_SWITCH = {
+    library: { to: 'atelier', label: '재능의 공방 쪽이 더 끌려요 →' },
+    atelier: { to: 'library', label: '지혜의 서재 쪽이 더 끌려요 →' }
+  };
+  var coverDoor = 'forest';
+  var coverTimer = null;
+  var coverAwarded = false;
+
+  function coverState(){
+    if (!state.cover || typeof state.cover !== 'object') { state.cover = { passed: false, doneDoors: [] }; }
+    if (!Array.isArray(state.cover.doneDoors)) { state.cover.doneDoors = []; }
+    return state.cover;
+  }
+  function coverDone(k){ return coverState().doneDoors.indexOf(k) !== -1; }
+  function paintCover(){
+    var doors = document.querySelectorAll('.door[data-door]');
+    for (var i = 0; i < doors.length; i++) {
+      doors[i].classList.toggle('done', coverDone(doors[i].getAttribute('data-door')));
+    }
+  }
+  function showCover(){
+    coverState();
+    paintCover();
+    closeCoverQuest();
+    closeNotice();
+    $('cover').hidden = false;
+    document.body.classList.add('cover-open');
+    if ('inert' in $('phone')) { $('phone').inert = true; }
+    $('cover').scrollTop = 0;
+    $('cover').focus({ preventScroll: true });
+  }
+  function hideCover(pass){
+    closeCoverQuest();
+    if (pass) { coverState().passed = true; save(); }
+    $('cover').hidden = true;
+    document.body.classList.remove('cover-open');
+    if ('inert' in $('phone')) { $('phone').inert = false; }
+  }
+  function resetCoverRing(){
+    var bar = $('cqBar');
+    if (!bar) { return; }
+    bar.style.transition = 'none';
+    bar.style.strokeDashoffset = '326.7';
+  }
+  function openCoverQuest(key){
+    var d = COVER_DOORS[key];
+    if (!d) { return; }
+    coverDoor = key;
+    coverAwarded = false;
+    if (coverTimer) { window.clearInterval(coverTimer); coverTimer = null; }
+    var card = $('cqCard');
+    card.style.setProperty('--tint', d.tint);
+    card.style.setProperty('--soft', d.soft);
+    $('cqKicker').textContent = d.island + ' · 첫 5초';
+    $('cqTitle').textContent = d.title;
+    $('cqDesc').textContent = d.desc;
+    $('cqStage').hidden = false;
+    $('cqResult').hidden = true;
+    $('cqActions').hidden = true;
+    $('cqStart').disabled = false;
+    $('cqStart').textContent = '5초 체험 시작';
+    $('cqCount').textContent = '5';
+    resetCoverRing();
+    var sw = COVER_SWITCH[key];
+    $('cqSwitch').hidden = !sw || coverDone(key);
+    if (sw) { $('cqSwitch').textContent = sw.label; }
+    $('cqBack').hidden = false;
+    $('coverQuest').hidden = false;
+    paintCover();
+    window.setTimeout(function(){
+      var t = coverDone(key) ? $('cqRoom') : $('cqStart');
+      if (t) { t.focus({ preventScroll: true }); }
+    }, 120);
+    if (coverDone(key)) { finishCoverQuest(true); }
+  }
+  function startCoverQuest(){
+    if (coverTimer) { return; }
+    var total = 5000, start = new Date().getTime(), left = 5;
+    var bar = $('cqBar'), n = $('cqCount'), b = $('cqStart');
+    b.disabled = true;
+    b.textContent = '숨 고르는 중…';
+    bar.style.transition = 'none';
+    bar.style.strokeDashoffset = '326.7';
+    void bar.getBoundingClientRect();
+    bar.style.transition = 'stroke-dashoffset ' + (total / 1000) + 's linear';
+    bar.style.strokeDashoffset = '0';
+    n.textContent = '5';
+    coverTimer = window.setInterval(function(){
+      var t = new Date().getTime() - start;
+      var sec = Math.max(0, Math.ceil((total - t) / 1000));
+      if (sec !== left) { left = sec; n.textContent = String(sec); }
+      if (t >= total) {
+        window.clearInterval(coverTimer);
+        coverTimer = null;
+        n.textContent = '0';
+        window.setTimeout(finishCoverQuest, 240);
+      }
+    }, 90);
+  }
+  function finishCoverQuest(already){
+    var d = COVER_DOORS[coverDoor];
+    var first = !already && !coverDone(coverDoor);
+    if (first) {
+      coverAwarded = true;
+      coverState().doneDoors.push(coverDoor);
+      state.seeds += 10;
+      save();
+      displayed = state.seeds;
+      setSeedText(state.seeds);
+      var chip = $('seedChip');
+      chip.classList.remove('bump');
+      void chip.offsetWidth;
+      chip.classList.add('bump');
+      paintHome();
+      paintCover();
+    }
+    $('cqStage').hidden = true;
+    $('cqSwitch').hidden = true;
+    $('cqBack').hidden = false;
+    $('cqResult').hidden = false;
+    $('cqActions').hidden = false;
+    $('cqSeed').hidden = !first;
+    $('cqDoneLine').textContent = first ? d.after : '이미 이 문에서 첫 나무를 심었어요. 씨앗은 문마다 한 번씩만 쌓여요.';
+    $('cqRoom').focus({ preventScroll: true });
+  }
+  function closeCoverQuest(){
+    if (coverTimer) { window.clearInterval(coverTimer); coverTimer = null; }
+    var q = $('coverQuest');
+    if (!q) { return; }
+    q.hidden = true;
+    resetCoverRing();
+  }
+  function openNotice(){
+    $('noticeOverlay').hidden = false;
+    var b = $('noticeOverlay').querySelector('[data-notice-close]');
+    if (b) { window.setTimeout(function(){ b.focus(); }, 80); }
+  }
+  function closeNotice(){
+    var o = $('noticeOverlay');
+    if (o) { o.hidden = true; }
+  }
+  function bindCover(){
+    var doors = document.querySelectorAll('.door[data-door]');
+    for (var i = 0; i < doors.length; i++) {
+      doors[i].addEventListener('click', function(){
+        openCoverQuest(this.getAttribute('data-door'));
+      });
+    }
+    $('cqStart').addEventListener('click', startCoverQuest);
+    $('cqClose').addEventListener('click', function(){
+      var k = coverDoor;
+      closeCoverQuest();
+      var d = document.querySelector('.door[data-door="' + k + '"]');
+      if (d) { d.focus({ preventScroll: true }); }
+    });
+    $('cqBack').addEventListener('click', function(){
+      var k = coverDoor;
+      closeCoverQuest();
+      var d = document.querySelector('.door[data-door="' + k + '"]');
+      if (d) { d.focus({ preventScroll: true }); }
+    });
+    $('coverQuest').addEventListener('click', function(e){
+      if (e.target === this) { closeCoverQuest(); }
+    });
+    $('cqSwitch').addEventListener('click', function(){
+      var sw = COVER_SWITCH[coverDoor];
+      if (sw) { openCoverQuest(sw.to); }
+    });
+    $('cqRoom').addEventListener('click', function(){
+      var just = coverAwarded;
+      closeCoverQuest();
+      hideCover(true);
+      switchTab('home');
+      $('screens').scrollTop = 0;
+      toast(just ? '내 방으로 들어왔어요 · 씨앗 +10' : '내 방으로 들어왔어요');
+    });
+    $('cqIsland').addEventListener('click', function(){
+      var k = coverDoor;
+      closeCoverQuest();
+      hideCover(true);
+      switchTab('map');
+      var meta = ISLANDS[k];
+      if (!meta) { return; }
+      openSheet(meta.sheet);
+      if (k === 'forest') { paintForest(); paintTimer(); }
+      if (k === 'onsen') { paintOnsen(); }
+      if (k === 'library') { paintLibrary(); }
+      if (k === 'atelier') { paintAtelier(); }
+    });
+    $('coverSkip').addEventListener('click', function(){
+      hideCover(true);
+      switchTab('map');
+      $('screens').scrollTop = 0;
+      toast('숲 전체 지도를 열었어요');
+    });
+    $('coverNotice').addEventListener('click', openNotice);
+    $('noticeBtn').addEventListener('click', openNotice);
+    $('coverBtn').addEventListener('click', showCover);
+    var closers = document.querySelectorAll('[data-notice-close]');
+    for (var c = 0; c < closers.length; c++) {
+      closers[c].addEventListener('click', closeNotice);
+    }
+    $('noticeOverlay').addEventListener('click', function(e){
+      if (e.target === this) { closeNotice(); }
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key !== 'Escape') { return; }
+      if (!$('noticeOverlay').hidden) { closeNotice(); return; }
+      if (!$('coverQuest').hidden) { closeCoverQuest(); }
+    });
   }
 
   /* ── 내 방 그리기 ─────────────────────── */
@@ -4277,8 +4823,10 @@ select{
         $('drawerToggle').setAttribute('aria-expanded', 'false');
         paintTimer();
         paintMorningTimer();
+        paintCover();
         paintAll();
         switchTab('home');
+        showCover();
         toast('처음 상태로 돌아왔어요');
       }
     });
@@ -4783,9 +5331,11 @@ select{
   if (state.day !== todayKey()) { resetDaily(); }
   paintAll();
   bind();
+  bindCover();
   paintAll();
   restoreMorningDraft();
   restoreMorningTimer();
+  if (!coverState().passed) { showCover(); }
 
   /* 날짜는 기기 시계로 매번 다시 계산합니다 (자정 넘김·탭 복귀 포함) */
   var dayStamp = todayKey();
