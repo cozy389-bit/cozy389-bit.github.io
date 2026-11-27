@@ -550,6 +550,35 @@ textarea:focus,input:focus,select:focus{border-color:#9CC4AE;background:#fff;out
 .seg.seg-2{grid-template-columns:repeat(2,1fr)}
 .form-hint{margin:7px 2px 0;font-size:12.5px;line-height:1.5;color:var(--muted);font-weight:600}
 
+/* ── 나만의 숲 한 장 만들기 ───────────────── */
+.poster-open-card{
+  background:linear-gradient(150deg,#FFFDF8,#F4EEE2);border:1px solid #E7DFD0;
+  box-shadow:0 8px 20px rgba(120,100,64,.09);
+}
+.poster-open-card .note-open-ico{background:#fff;border-color:#E7DFD0}
+.poster-open-card .note-open-go{color:#9C8F70}
+.poster-wrap{position:relative;margin:0 0 12px;border-radius:18px;overflow:hidden;background:#F6F1E7;border:1px solid #EADFC8;box-shadow:0 14px 30px rgba(122,98,56,.16)}
+.poster-wrap canvas{display:block;width:100%;height:auto}
+.poster-badge{position:absolute;left:10px;top:10px;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.93);color:#96743C;font-size:10.5px;font-weight:800;letter-spacing:.02em;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.poster-tools{margin:0 0 10px}
+.poster-tools-k{display:block;font-size:12.5px;font-weight:800;color:#8A7B60;margin:0 0 7px}
+.poster-chips{display:flex;flex-wrap:wrap;gap:6px}
+.poster-chip{font-size:12.5px;font-weight:800;color:#7A5F2E;background:#FBF3E3;border:1px solid #EBDCBE;padding:8px 11px;border-radius:999px;min-height:38px}
+.poster-chip:active{background:#F5E7CE}
+.poster-load-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;min-height:46px;margin:0 0 14px;border-radius:13px;background:#FFFDF8;border:1.5px dashed #E2D3B8;font-size:13.5px;font-weight:800;color:#8A6A34}
+.poster-note-list{display:flex;flex-direction:column;gap:6px;margin:-6px 0 14px;padding:10px;border-radius:14px;background:#FFFDF8;border:1px solid #EFE6D6}
+.poster-note-chip{display:flex;align-items:flex-start;gap:7px;text-align:left;font-size:13px;line-height:1.5;color:#4E4536;font-weight:600;padding:8px 9px;border-radius:10px;background:#FBF7EE}
+.poster-note-chip i{font-style:normal}
+.poster-file{width:100%;font-size:13px;color:#6C6250;background:#FFFDF8;border:1.5px dashed #E2D3B8;border-radius:14px;padding:11px}
+.poster-file::file-selector-button{font-family:inherit;font-weight:800;font-size:12.5px;color:var(--green-dark);background:var(--green-soft);border:0;border-radius:10px;padding:9px 12px;margin-right:10px}
+.poster-photo-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 2px 0}
+.poster-photo-state{font-size:12px;font-weight:700;color:#9A8A6C}
+.poster-photo-clear{font-size:12px;font-weight:800;color:#8A5A20;background:#FBF1E1;border-radius:999px;padding:7px 11px;min-height:36px}
+.poster-msg{margin:0 0 6px;padding:10px 12px;border-radius:12px;background:var(--green-soft);color:var(--green-dark);font-size:13px;font-weight:800;line-height:1.45}
+.field .opt{font-weight:700;color:#A9B2AC;font-size:12.5px}
+.post-art{margin:0 0 12px;border-radius:14px;overflow:hidden;border:1px solid #EADFC8;background:#F6F1E7;max-width:200px}
+.post-art img{display:block;width:100%;height:auto}
+
 /* ── overlays / sheets ───────────────────── */
 .overlay{
   position:absolute;inset:0;z-index:60;display:flex;flex-direction:column;justify-content:flex-end;
@@ -1412,6 +1441,15 @@ body.cover-open{overflow:hidden}
         <span class="note-open-text">
           <b>나의 숲 노트 보기</b>
           <span id="noteOpenSub">오늘 남긴 조각이 나만의 작은 책이 돼요</span>
+        </span>
+        <span class="note-open-go" aria-hidden="true">›</span>
+      </button>
+
+      <button class="note-open-card poster-open-card" id="posterOpenBtn" type="button" aria-label="나만의 숲 한 장 만들기">
+        <span class="note-open-ico" aria-hidden="true">🖼️</span>
+        <span class="note-open-text">
+          <b>나만의 숲 한 장 만들기</b>
+          <span>사랑하는 글귀와 사진으로 포스터 한 장</span>
         </span>
         <span class="note-open-go" aria-hidden="true">›</span>
       </button>
@@ -2337,7 +2375,70 @@ body.cover-open{overflow:hidden}
     </div>
   </div>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <!-- ═══ 나만의 숲 한 장 만들기 ═══ -->
+  <div class="overlay" id="sheetPoster" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="posterTitle">
+      <div class="sheet-grab" aria-hidden="true"></div>
+      <div class="sheet-head">
+        <h2 id="posterTitle">🖼️ 나만의 숲 한 장</h2>
+        <p>좋아하는 글귀와 사진 한 장으로, 내 방에 걸어 둘 포스터를 만들어요.</p>
+        <button class="sheet-close" type="button" data-close aria-label="닫기">
+          <svg viewBox="0 0 24 24" fill="none"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="sheet-body">
+        <div class="poster-wrap">
+          <canvas id="posterCanvas" width="1080" height="1528" role="img" aria-label="나만의 숲 한 장 미리보기"></canvas>
+          <span class="poster-badge" id="posterBadge">예시 작품 · 고쳐 보세요</span>
+        </div>
+
+        <div class="poster-tools">
+          <span class="poster-tools-k">글귀가 떠오르지 않으면 톡 골라 보세요</span>
+          <div class="poster-chips" id="posterChips"></div>
+        </div>
+        <button class="poster-load-btn" id="posterFromNote" type="button">📖 나의 숲 노트에서 불러오기</button>
+        <div class="poster-note-list" id="posterNoteList" hidden></div>
+
+        <div class="field">
+          <label for="posterName">이름</label>
+          <input id="posterName" type="text" maxlength="12" placeholder="예) 박상희" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="posterQuote">내가 사랑하는 글귀</label>
+          <textarea id="posterQuote" rows="4" maxlength="240" placeholder="예) 두려워하지 말아라. 두개의 뼈와 네개의 발끝으로…"></textarea>
+        </div>
+        <div class="field">
+          <label for="posterSource">출처 <span class="opt">(선택)</span></label>
+          <input id="posterSource" type="text" maxlength="40" placeholder="예) 「노루」 나희덕">
+        </div>
+        <div class="field">
+          <label for="posterReason">내 마음에 머문 까닭</label>
+          <textarea id="posterReason" rows="2" maxlength="120" placeholder="예) 고속도로 위에 선 노루의 눈길을 나처럼 느끼며 산 시간들"></textarea>
+        </div>
+        <div class="field">
+          <label for="posterPhoto">글에 건네는 사진 한 장</label>
+          <input class="poster-file" id="posterPhoto" type="file" accept="image/*" aria-label="포스터에 넣을 사진 한 장 고르기">
+          <div class="poster-photo-row">
+            <span class="poster-photo-state" id="posterPhotoState">지금은 예시 사진이 놓여 있어요</span>
+            <button class="poster-photo-clear" id="posterPhotoClear" type="button">사진 빼기</button>
+          </div>
+          <p class="form-hint">사진은 이 화면 안에서만 쓰이고, 서버로 보내지 않아요.</p>
+        </div>
+        <div class="field">
+          <label for="posterCaption">사진 설명</label>
+          <textarea id="posterCaption" rows="2" maxlength="120" placeholder="예) 창가에 앉아 바라본 오늘의 숲"></textarea>
+        </div>
+        <p class="poster-msg" id="posterMsg" hidden></p>
+        <p class="foot-note" style="margin:4px 4px 10px">미리보기에 다 담기지 않는 글은 끝을 …로 줄여 그려요.</p>
+      </div>
+      <div class="sheet-foot">
+        <button class="btn btn-primary" type="button" id="posterSave">📥 작품 이미지 저장하기</button>
+        <button class="btn btn-soft" type="button" id="posterShare" style="margin-top:9px">🔥 온기 살롱에 나누기</button>
+      </div>
+    </div>
+  </div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 </div>
 
 <!-- ═══ 첫 화면 · 세 개의 문 (A안) ═══ -->
@@ -2534,7 +2635,8 @@ body.cover-open{overflow:hidden}
       gifts: [],
       hand: [],
       letter: null,
-      lesson: { progress: 0, done: false, note: '' }
+      lesson: { progress: 0, done: false, note: '' },
+      poster: { name: '', quote: '', source: '', reason: '', caption: '', nameEdited: false, ready: false, saved: false, shared: false, rewarded: false }
     };
   }
   var state = defaults();
@@ -3977,7 +4079,7 @@ body.cover-open{overflow:hidden}
     var out = [];
     var mine = (state.salon && state.salon.posts) || [];
     for (var i = 0; i < mine.length; i++) {
-      out.push({ id: mine[i].id, author: '나', q: mine[i].q, ask: mine[i].ask, body: mine[i].body, mine: true });
+      out.push({ id: mine[i].id, author: '나', q: mine[i].q, ask: mine[i].ask, body: mine[i].body, mine: true, art: mine[i].art || '', artAlt: mine[i].artAlt || '' });
     }
     for (var j = 0; j < SALON_SAMPLES.length; j++) { out.push(SALON_SAMPLES[j]); }
     return out;
@@ -3995,6 +4097,7 @@ body.cover-open{overflow:hidden}
         '<span class="post-q">' + esc(p.q) + '</span>' +
         '<span class="post-ask">' + esc(p.ask) + '</span></div>' +
         '<p class="post-body">' + esc(p.body) + '</p>' +
+        ((p.art && /^data:image\//.test(p.art)) ? '<div class="post-art"><img src="' + p.art + '" alt="' + esc(p.artAlt || '나만의 숲 한 장 포스터') + '"></div>' : '') +
         '<div class="stamp-row">';
       for (var s = 0; s < SALON_STAMPS.length; s++) {
         var st = SALON_STAMPS[s];
@@ -4079,6 +4182,509 @@ body.cover-open{overflow:hidden}
       b.disabled = true;
       b.textContent = '줄 것과 받을 것을 적어 주세요';
     }
+  }
+
+  /* ── 나만의 숲 한 장 만들기 ─────────────── */
+  var POSTER_W = 1080, POSTER_H = 1528;
+  var POSTER_SANS = '"Apple SD Gothic Neo","Noto Sans CJK KR","Noto Sans KR","Malgun Gothic","맑은 고딕",system-ui,sans-serif';
+  var POSTER_SERIF = '"Nanum Myeongjo","AppleMyungjo","Noto Serif CJK KR","Noto Serif KR","Batang","바탕",serif';
+  var POSTER_QUOTES = [
+    { label: '서시 · 윤동주', quote: '죽는 날까지 하늘을 우러러\n한 점 부끄럼이 없기를', source: '「서시」 윤동주' },
+    { label: '진달래꽃 · 김소월', quote: '나 보기가 역겨워\n가실 때에는\n말없이 고이 보내 드리우리다', source: '「진달래꽃」 김소월' },
+    { label: '광야 · 이육사', quote: '까마득한 날에\n하늘이 처음 열리고\n어데 닭 우는 소리 들렸으랴', source: '「광야」 이육사' }
+  ];
+  var posterPhoto = null;
+  var posterPhotoOff = false;
+  var posterSample = null;
+  var posterMsgTimer = null;
+
+  function posterFont(weight, size, serif){
+    return weight + ' ' + size + 'px ' + (serif ? POSTER_SERIF : POSTER_SANS);
+  }
+  function posterExample(){
+    return {
+      name: displayName(),
+      quote: '두려워하지 말아라.\n두개의 뼈와 네개의 발끝으로\n불행의 속도를 추월할 수 없다 해도\n어서 일어나 남은 길을 걸어라',
+      source: '「노루」 나희덕',
+      reason: '고속도로 위에 선 노루의 눈길을 나처럼 느끼며 산 시간들',
+      caption: '창가에 앉아 바라본 오늘의 숲.\n서두르지 않아도 괜찮은 하루였으면 합니다.'
+    };
+  }
+  function posterData(){
+    if (!state.poster || typeof state.poster !== 'object') { state.poster = {}; }
+    var d = state.poster;
+    var keys = ['name', 'quote', 'source', 'reason', 'caption'];
+    for (var i = 0; i < keys.length; i++) {
+      if (typeof d[keys[i]] !== 'string') { d[keys[i]] = ''; }
+    }
+    if (!d.ready) {
+      var ex = posterExample();
+      if (!d.name && !d.nameEdited) { d.name = ex.name; }
+      if (!d.quote) { d.quote = ex.quote; }
+      if (!d.source) { d.source = ex.source; }
+      if (!d.reason) { d.reason = ex.reason; }
+      if (!d.caption) { d.caption = ex.caption; }
+      d.ready = true;
+      save();
+    }
+    return d;
+  }
+  function posterRoundRect(ctx, x, y, w, h, r){
+    var rad = Math.min(r, w / 2, h / 2);
+    if (typeof ctx.roundRect === 'function') {
+      ctx.beginPath();
+      ctx.roundRect(x, y, w, h, rad);
+      return;
+    }
+    ctx.beginPath();
+    ctx.moveTo(x + rad, y);
+    ctx.lineTo(x + w - rad, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + rad);
+    ctx.lineTo(x + w, y + h - rad);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - rad, y + h);
+    ctx.lineTo(x + rad, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - rad);
+    ctx.lineTo(x, y + rad);
+    ctx.quadraticCurveTo(x, y, x + rad, y);
+    ctx.closePath();
+  }
+  function posterLines(ctx, text, maxW, maxLines){
+    var out = [];
+    var paras = String(text == null ? '' : text).replace(/\r/g, '').split('\n');
+    for (var i = 0; i < paras.length; i++) {
+      var para = paras[i].replace(/\s+$/, '');
+      if (!para) { out.push(''); continue; }
+      var cur = '';
+      for (var c = 0; c < para.length; c++) {
+        var ch = para.charAt(c);
+        var next = cur + ch;
+        if (cur && ctx.measureText(next).width > maxW) {
+          var sp = cur.lastIndexOf(' ');
+          if (sp > 0 && ch !== ' ') {
+            out.push(cur.slice(0, sp));
+            cur = cur.slice(sp + 1) + ch;
+          } else {
+            out.push(cur);
+            cur = ch;
+          }
+        } else {
+          cur = next;
+        }
+      }
+      out.push(cur);
+    }
+    while (out.length && out[out.length - 1] === '') { out.pop(); }
+    if (maxLines && out.length > maxLines) {
+      out = out.slice(0, maxLines);
+      var last = out[maxLines - 1];
+      while (last.length > 1 && ctx.measureText(last + '…').width > maxW) { last = last.slice(0, -1); }
+      out[maxLines - 1] = last.replace(/\s+$/, '') + '…';
+    }
+    return out;
+  }
+  function posterDrawCover(ctx, img, x, y, w, h, r){
+    if (!img || !img.width || !img.height) { return; }
+    ctx.save();
+    posterRoundRect(ctx, x, y, w, h, r);
+    ctx.clip();
+    var ir = img.width / img.height, br = w / h;
+    var sx, sy, sw, sh;
+    if (ir > br) { sh = img.height; sw = sh * br; sx = (img.width - sw) / 2; sy = 0; }
+    else { sw = img.width; sh = sw / br; sx = 0; sy = (img.height - sh) / 2; }
+    ctx.drawImage(img, sx, sy, sw, sh, x, y, w, h);
+    ctx.restore();
+  }
+  function posterDrawEmpty(ctx, x, y, w, h, r, off){
+    var t1 = off ? '글과 여백만으로' : '사진 한 장을 건네면';
+    var t2 = off ? '한 장이 되었어요' : '여기에 놓여요';
+    ctx.save();
+    posterRoundRect(ctx, x, y, w, h, r);
+    ctx.clip();
+    ctx.fillStyle = '#F1E9DA';
+    ctx.fillRect(x, y, w, h);
+    ctx.fillStyle = '#E3EAD9';
+    ctx.beginPath();
+    ctx.ellipse(x + w * 0.24, y + h * 0.96, w * 0.52, h * 0.2, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#D8E4D1';
+    ctx.beginPath();
+    ctx.ellipse(x + w * 0.86, y + h * 1.02, w * 0.56, h * 0.18, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#C9DCC6';
+    ctx.beginPath();
+    ctx.moveTo(x + w / 2, y + h * 0.46);
+    ctx.quadraticCurveTo(x + w / 2 + w * 0.16, y + h * 0.38, x + w / 2 + w * 0.22, y + h * 0.2);
+    ctx.quadraticCurveTo(x + w / 2 + w * 0.05, y + h * 0.32, x + w / 2, y + h * 0.46);
+    ctx.fill();
+    ctx.strokeStyle = '#B7CDB4';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(x + w / 2, y + h * 0.46);
+    ctx.lineTo(x + w / 2, y + h * 0.62);
+    ctx.stroke();
+    ctx.fillStyle = '#8B7A62';
+    ctx.font = posterFont(500, 23, false);
+    ctx.textAlign = 'center';
+    ctx.fillText(t1, x + w / 2, y + h * 0.7);
+    ctx.fillText(t2, x + w / 2, y + h * 0.7 + 34);
+    ctx.textAlign = 'left';
+    ctx.restore();
+  }
+  function drawPoster(){
+    var cv = $('posterCanvas');
+    if (!cv || !cv.getContext) { return; }
+    var ctx = cv.getContext('2d');
+    var W = POSTER_W, H = POSTER_H;
+    var p = posterData();
+    var padL = 72, padR = W - 72, col2 = 320;
+    var paper = '#F6F1E7', ink = '#26211B', gold = '#C08A3E', brown = '#B08748', soft = '#8A7B69';
+
+    ctx.save();
+    ctx.textBaseline = 'alphabetic';
+    ctx.fillStyle = paper;
+    ctx.fillRect(0, 0, W, H);
+
+    /* 우측 상단 작은 번호 */
+    ctx.font = posterFont(600, 26, false);
+    ctx.fillStyle = gold;
+    ctx.textAlign = 'right';
+    ctx.fillText('01', padR, 104);
+
+    /* 이름 */
+    ctx.textAlign = 'left';
+    ctx.fillStyle = ink;
+    ctx.font = posterFont(700, 48, true);
+    var nameText = String(p.name || '').trim() || displayName();
+    if (nameText.length > 12) { nameText = nameText.slice(0, 12); }
+    ctx.fillText(nameText, padL, 200);
+
+    /* 왼쪽 열 · 글귀 라벨 */
+    ctx.fillStyle = brown;
+    ctx.font = posterFont(500, 25, true);
+    ctx.fillText('내가 사랑하는', padL, 268);
+    ctx.fillText('글귀', padL, 302);
+
+    /* 큰 따옴표 */
+    ctx.fillStyle = gold;
+    ctx.font = posterFont(700, 132, true);
+    ctx.fillText('“', 296, 328);
+
+    /* 글귀 */
+    ctx.font = posterFont(400, 44, false);
+    ctx.fillStyle = ink;
+    var quoteLines = posterLines(ctx, p.quote, 660, 6);
+    var quoteTop = 348, quoteLh = 64;
+    for (var i = 0; i < quoteLines.length; i++) {
+      ctx.fillText(quoteLines[i], col2, quoteTop + i * quoteLh);
+    }
+    var quoteEnd = quoteTop + (Math.max(1, quoteLines.length) - 1) * quoteLh;
+
+    /* 출처 */
+    var sourceText = String(p.source || '').trim();
+    var sourceY = quoteEnd + 66;
+    if (sourceText) {
+      ctx.textAlign = 'right';
+      ctx.font = posterFont(400, 27, true);
+      ctx.fillStyle = soft;
+      ctx.fillText(sourceText, padR, sourceY);
+      ctx.textAlign = 'left';
+    }
+
+    /* 내 마음에 머문 까닭 */
+    var reasonY = sourceY + (sourceText ? 78 : 48);
+    ctx.fillStyle = brown;
+    ctx.font = posterFont(500, 25, true);
+    ctx.fillText('내 마음에', padL, reasonY);
+    ctx.fillText('머문 까닭', padL, reasonY + 34);
+    ctx.font = posterFont(400, 28, false);
+    ctx.fillStyle = '#6C5B47';
+    var reasonLines = posterLines(ctx, p.reason, 660, 2);
+    for (var r = 0; r < reasonLines.length; r++) {
+      ctx.fillText(reasonLines[r], col2, reasonY + r * 40);
+    }
+    var reasonEnd = reasonY + (Math.max(1, reasonLines.length) - 1) * 40;
+
+    /* 사진 한 장 + 설명 */
+    ctx.font = posterFont(400, 26, false);
+    var capLines = posterLines(ctx, p.caption, 520, 3);
+    var capLh = 38;
+    var capH = capLines.length ? capLines.length * capLh : 0;
+    var photoY = Math.max(reasonEnd + 70, 690);
+    var avail = H - 96 - photoY - (capH ? capH + 44 : 0);
+    var photoH = Math.max(220, Math.min(620, avail));
+    var photoW = Math.round(Math.min(520, photoH * 0.82));
+
+    ctx.fillStyle = brown;
+    ctx.font = posterFont(500, 25, true);
+    ctx.fillText('글에 건네는', padL, photoY + 34);
+    ctx.fillText('사진 한 장', padL, photoY + 68);
+
+    var img = posterPhoto || (posterPhotoOff ? null : posterSample);
+    if (img) { posterDrawCover(ctx, img, col2, photoY, photoW, photoH, 26); }
+    else { posterDrawEmpty(ctx, col2, photoY, photoW, photoH, 26, posterPhotoOff); }
+
+    if (capLines.length) {
+      ctx.fillStyle = soft;
+      ctx.font = posterFont(400, 26, false);
+      var capTop = photoY + photoH + 46;
+      for (var c = 0; c < capLines.length; c++) {
+        ctx.fillText(capLines[c], col2, capTop + c * capLh);
+      }
+    }
+    ctx.restore();
+  }
+  function ensurePosterSample(cb){
+    if (posterPhoto || posterSample) { if (cb) { cb(); } return; }
+    var hero = document.querySelector('.hero img');
+    var src = hero ? (hero.getAttribute('src') || hero.src || '') : '';
+    if (!src) { if (cb) { cb(); } return; }
+    var im = new Image();
+    im.onload = function(){ posterSample = im; if (cb) { cb(); } };
+    im.onerror = function(){ if (cb) { cb(); } };
+    im.src = src;
+  }
+  function posterMsg(text){
+    var el = $('posterMsg');
+    if (!el) { return; }
+    if (posterMsgTimer) { window.clearTimeout(posterMsgTimer); posterMsgTimer = null; }
+    if (!text) { el.hidden = true; return; }
+    el.textContent = text;
+    el.hidden = false;
+    posterMsgTimer = window.setTimeout(function(){ el.hidden = true; }, 4600);
+  }
+  function paintPosterBadge(){
+    var p = posterData();
+    var badge = $('posterBadge');
+    if (badge) {
+      badge.textContent = p.shared ? '광장에 나눈 한 장' : (p.saved ? '저장한 한 장' : '예시 작품 · 고쳐 보세요');
+    }
+    var share = $('posterShare');
+    if (share) { share.textContent = p.shared ? '🔥 온기 살롱에 다시 나누기' : '🔥 온기 살롱에 나누기'; }
+    var state1 = $('posterPhotoState');
+    if (state1) {
+      state1.textContent = posterPhoto ? '내 사진 한 장이 놓여 있어요' : (posterPhotoOff ? '사진 없이 글과 여백만으로 된 한 장' : '지금은 예시 사진이 놓여 있어요');
+    }
+    var clear = $('posterPhotoClear');
+    if (clear) { clear.textContent = (posterPhoto || !posterPhotoOff) ? '사진 빼기' : '예시 사진 넣기'; }
+  }
+  function posterChips(){
+    var box = $('posterChips');
+    if (!box) { return; }
+    var html = '';
+    for (var i = 0; i < POSTER_QUOTES.length; i++) {
+      html += '<button class="poster-chip" type="button" data-poster-quote="' + i + '">' + esc(POSTER_QUOTES[i].label) + '</button>';
+    }
+    box.innerHTML = html;
+  }
+  function posterApplyQuote(quote, source, msg){
+    var p = posterData();
+    p.quote = quote;
+    p.source = source || '';
+    $('posterQuote').value = quote;
+    $('posterSource').value = p.source;
+    save();
+    drawPoster();
+    posterMsg(msg);
+  }
+  function posterNoteToggle(){
+    var box = $('posterNoteList');
+    if (!box) { return; }
+    if (!box.hidden) { box.hidden = true; return; }
+    var pieces = notePieces();
+    if (!pieces.length) {
+      posterMsg('아직 노트에 담긴 조각이 없어요. 내 방의 오늘의 쉼표를 하나 눌러 두면 여기로 불러올 수 있어요.');
+      return;
+    }
+    var html = '';
+    for (var i = 0; i < pieces.length && i < 8; i++) {
+      html += '<button class="poster-note-chip" type="button" data-poster-note="' + i + '">' +
+        '<i aria-hidden="true">' + pieces[i].ico + '</i><span>' + esc(shorten(pieces[i].text, 46)) + '</span></button>';
+    }
+    box.innerHTML = html;
+    box.hidden = false;
+  }
+  function posterPickPhoto(){
+    var input = $('posterPhoto');
+    var f = input && input.files && input.files[0];
+    if (!f) { return; }
+    if (!/^image\//.test(f.type || '')) { posterMsg('사진 파일(jpg·png 등)만 넣을 수 있어요.'); return; }
+    if (f.size > 14 * 1024 * 1024) { posterMsg('14MB 이하 사진을 골라 주세요.'); return; }
+    posterMsg('사진을 놓는 중…');
+    var reader = new FileReader();
+    reader.onload = function(){
+      var im = new Image();
+      im.onload = function(){
+        posterPhoto = im;
+        posterPhotoOff = false;
+        paintPosterBadge();
+        drawPoster();
+        posterMsg('사진 한 장을 건넸어요. 미리보기를 확인해 보세요.');
+      };
+      im.onerror = function(){ posterMsg('이 사진은 열 수 없어요. 다른 사진으로 해 보세요.'); };
+      im.src = reader.result;
+    };
+    reader.onerror = function(){ posterMsg('사진을 읽지 못했어요. 다시 골라 주세요.'); };
+    reader.readAsDataURL(f);
+  }
+  function posterFileName(){
+    var d = new Date();
+    var mm = d.getMonth() + 1, dd = d.getDate();
+    return '나의-숲-한-장-' + d.getFullYear() + '-' + (mm < 10 ? '0' + mm : mm) + '-' + (dd < 10 ? '0' + dd : dd) + '.png';
+  }
+  function posterTriggerDownload(url, name, revoke){
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = name;
+    a.rel = 'noopener';
+    document.body.appendChild(a);
+    a.click();
+    window.setTimeout(function(){
+      if (a.parentNode) { a.parentNode.removeChild(a); }
+      if (revoke) { URL.revokeObjectURL(url); }
+    }, 6000);
+  }
+  function savePosterImage(ev){
+    var cv = $('posterCanvas');
+    if (!cv) { return; }
+    drawPoster();
+    var p = posterData();
+    var first = !p.rewarded;
+    p.saved = true;
+    if (first) { p.rewarded = true; }
+    save();
+    paintPosterBadge();
+    var name = posterFileName();
+    var url = '';
+    try { url = cv.toDataURL('image/png'); } catch (e) { url = ''; }
+    if (!url) {
+      posterMsg('이 브라우저에서는 이미지로 담을 수 없어요. 화면을 캡처해 주세요.');
+      return;
+    }
+    posterTriggerDownload(url, name, false);
+    if (first) {
+      addSeeds(10, ev);
+      posterMsg('첫 작품 완성! PNG로 저장했어요 · +10 씨앗');
+    } else {
+      posterMsg('PNG로 저장했어요 · 사진첩이나 다운로드 폴더를 확인해 보세요');
+    }
+  }
+  function posterThumbnail(){
+    try {
+      var cv = $('posterCanvas');
+      if (!cv) { return ''; }
+      var t = document.createElement('canvas');
+      t.width = 360;
+      t.height = Math.round(360 * POSTER_H / POSTER_W);
+      var c = t.getContext('2d');
+      c.fillStyle = '#F6F1E7';
+      c.fillRect(0, 0, t.width, t.height);
+      c.drawImage(cv, 0, 0, t.width, t.height);
+      return t.toDataURL('image/jpeg', 0.72);
+    } catch (e) {
+      return '';
+    }
+  }
+  function sharePoster(ev){
+    var p = posterData();
+    var q = String(p.quote || '').trim();
+    if (!q) { posterMsg('글귀를 한 줄이라도 적어 주세요. 그 한 줄이 카드가 돼요.'); return; }
+    var firstLine = '';
+    var qLines = q.split('\n');
+    for (var i = 0; i < qLines.length; i++) { if (qLines[i].trim()) { firstLine = qLines[i].trim(); break; } }
+    var body = '“' + shorten(firstLine, 62) + '”';
+    var src = String(p.source || '').trim();
+    if (src) { body += ' ' + src; }
+    var reason = String(p.reason || '').trim();
+    if (reason) { body += '\n' + shorten(reason, 70); }
+    if (body.length > 200) { body = body.slice(0, 199) + '…'; }
+
+    if (!state.salon || typeof state.salon !== 'object') { state.salon = { posts: [], stamps: {}, rewarded: false }; }
+    if (!Array.isArray(state.salon.posts)) { state.salon.posts = []; }
+    var first = !p.rewarded;
+    state.salon.posts.unshift({
+      id: 'salon' + Date.now(),
+      q: '나만의 숲 한 장',
+      ask: '그냥 들어주기',
+      body: body,
+      at: stampNow(),
+      art: posterThumbnail(),
+      artAlt: '내가 만든 ‘나만의 숲 한 장’ 포스터'
+    });
+    while (state.salon.posts.length > 8) { state.salon.posts.pop(); }
+    p.shared = true;
+    if (first) { p.rewarded = true; }
+    save();
+    paintPosterBadge();
+    paintSalon();
+    closeSheet($('sheetPoster'));
+    switchTab('plaza');
+    setPlazaTab('salon');
+    $('screens').scrollTop = 0;
+    if (first) { addSeeds(10, ev); }
+    toast(first ? '첫 작품 +10 씨앗 · 온기 살롱에 나눴어요' : '내 숲 한 장을 온기 살롱에 나눴어요');
+  }
+  function openPoster(){
+    var p = posterData();
+    if (!p.name && !p.nameEdited) { p.name = displayName(); }
+    $('posterName').value = p.name;
+    $('posterQuote').value = p.quote;
+    $('posterSource').value = p.source;
+    $('posterReason').value = p.reason;
+    $('posterCaption').value = p.caption;
+    $('posterPhoto').value = '';
+    $('posterNoteList').hidden = true;
+    posterChips();
+    posterMsg('');
+    paintPosterBadge();
+    drawPoster();
+    ensurePosterSample(drawPoster);
+    openSheet('sheetPoster');
+  }
+  function bindPoster(){
+    var fields = [['posterName', 'name'], ['posterQuote', 'quote'], ['posterSource', 'source'], ['posterReason', 'reason'], ['posterCaption', 'caption']];
+    for (var i = 0; i < fields.length; i++) {
+      (function(id, key){
+        var el = $(id);
+        if (!el) { return; }
+        el.addEventListener('input', function(){
+          var p = posterData();
+          p[key] = this.value;
+          if (key === 'name') { p.nameEdited = true; }
+          save();
+          drawPoster();
+        });
+      })(fields[i][0], fields[i][1]);
+    }
+    $('posterOpenBtn').addEventListener('click', openPoster);
+    $('posterPhoto').addEventListener('change', posterPickPhoto);
+    $('posterPhotoClear').addEventListener('click', function(){
+      var hadPhoto = !!posterPhoto || !posterPhotoOff;
+      posterPhoto = null;
+      posterPhotoOff = hadPhoto;
+      $('posterPhoto').value = '';
+      paintPosterBadge();
+      drawPoster();
+      posterMsg(hadPhoto ? '사진을 뺐어요. 글과 여백만으로 된 한 장이에요.' : '예시 사진을 다시 놓았어요.');
+    });
+    $('posterFromNote').addEventListener('click', posterNoteToggle);
+    $('posterSave').addEventListener('click', savePosterImage);
+    $('posterShare').addEventListener('click', sharePoster);
+    document.addEventListener('click', function(e){
+      var chip = e.target.closest ? e.target.closest('[data-poster-quote]') : null;
+      if (chip) {
+        var qi = parseInt(chip.getAttribute('data-poster-quote'), 10);
+        var q = POSTER_QUOTES[qi];
+        if (q) { posterApplyQuote(q.quote, q.source, '추천 글귀를 담았어요. 마음에 맞게 고쳐도 좋아요.'); }
+        return;
+      }
+      var np = e.target.closest ? e.target.closest('[data-poster-note]') : null;
+      if (np) {
+        var ni = parseInt(np.getAttribute('data-poster-note'), 10);
+        var pieces = notePieces();
+        var pc = pieces[ni];
+        if (pc) { posterApplyQuote(pc.text, '나의 숲 노트 · ' + dateLabel(new Date()), '노트에서 한 조각을 불러왔어요.'); }
+      }
+    });
   }
 
   /* ── 시트 열고 닫기 ─────────────────── */
@@ -4866,6 +5472,7 @@ body.cover-open{overflow:hidden}
     $('noteCloseBtn').addEventListener('click', function(){ closeSheet($('sheetNote')); });
     $('noteKeepBtn').addEventListener('click', keepNote);
     $('noteLessonBtn').addEventListener('click', noteToLesson);
+    bindPoster();
     $('drawerToggle').addEventListener('click', function(){
       var list = $('drawerList');
       var willOpen = list.hidden;
@@ -4943,6 +5550,9 @@ body.cover-open{overflow:hidden}
         $('morningInput').value = '';
         $('quickLine').value = '';
         $('dateInput').value = '';
+        posterPhoto = null;
+        posterPhotoOff = false;
+        $('posterPhoto').value = '';
         $('drawerList').hidden = true;
         $('drawerToggle').textContent = '열어 보기';
         $('drawerToggle').setAttribute('aria-expanded', 'false');
@@ -5471,6 +6081,7 @@ body.cover-open{overflow:hidden}
     paintChest();
     paintLessonTags();
     paintLessonProgress();
+    paintPosterBadge();
     if (!storageOk) {
       toast('이 브라우저에서는 저장이 잠시 꺼져 있어요');
     }
