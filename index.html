@@ -2102,7 +2102,10 @@ body.cover-open{overflow:hidden}
 
         <div class="gh-sub" style="margin-top:18px">
           <h2>오늘의 길드장 · 재능 맛보기</h2>
-          <span class="hint">5명이면 개설</span>
+          <span class="head-meta">
+            <span class="hint">5명이면 개설</span>
+            <span class="seed-pill" data-seed="guildVote">🌱 5명 채우면 +5 씨앗</span>
+          </span>
         </div>
         <div class="gh-list" id="guildList"></div>
         <p class="gh-note">‘배우고 싶어요’는 말 대신 누르는 신청이에요. 5명이 차면 그분의 원데이 클래스가 열리고, 수강료는 강사 몫 50~60%로 정산돼요.</p>
@@ -4854,6 +4857,13 @@ body.cover-open{overflow:hidden}
     },
     guild: function(){
       return hasGift('shareGuild') ? ['✓ +10 씨앗 받음', true] : ['🌱 첫 신청 +10 씨앗', false];
+    },
+    guildVote: function(){
+      var r = (state.guild && state.guild.rewarded) || {};
+      for (var k in r) {
+        if (Object.prototype.hasOwnProperty.call(r, k) && r[k]) { return ['✓ +5 씨앗 받음', true]; }
+      }
+      return ['🌱 5명 채우면 +5 씨앗', false];
     }
   };
   function paintSeedHints(){
@@ -5944,6 +5954,7 @@ body.cover-open{overflow:hidden}
         state.guild.rewarded[id] = true;
         save();
         addSeeds(5, e);
+        paintSeedHints();
       }
     });
 
